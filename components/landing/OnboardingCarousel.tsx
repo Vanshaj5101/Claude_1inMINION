@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { landingContent } from '@/content/landing'
 import { levels } from '@/content/levels'
@@ -18,7 +18,9 @@ const TOTAL = 4 // 4 slides: Backstory, Mission, Training Program, Name entry
 
 export default function OnboardingCarousel() {
   const { story } = landingContent
-  const [current, setCurrent] = useState(0)
+  const searchParams = useSearchParams()
+  const startSlide = Math.min(Math.max(parseInt(searchParams.get('slide') ?? '0', 10) || 0, 0), TOTAL - 1)
+  const [current, setCurrent] = useState(startSlide)
   const [nameInput, setNameInput] = useState('')
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
   const { saveMinionName } = useMinionName()

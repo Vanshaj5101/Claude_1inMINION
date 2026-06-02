@@ -4,6 +4,19 @@ import { useState, useCallback, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { Clipboard, Check, ArrowRight, RotateCcw } from 'lucide-react'
 import TableOfContents from '../TableOfContents'
+import LevelBriefingModal from '../LevelBriefingModal'
+
+const briefingData = {
+  level: {
+    number: '04',
+    title: 'Beyond the Mission',
+    concept: 'AI Opportunity Finder',
+    duration: '15 min',
+    subdescription: 'The heist was practice. Now find where AI belongs in your actual work. Five questions. One personalised prompt. Your AI plan for FY27.',
+  },
+  mission_targets: [],
+  mission_gear: [],
+}
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -239,6 +252,7 @@ function QuestionCard({
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function Level4Page() {
+  const [showBriefing, setShowBriefing] = useState(true)
   const [answers, setAnswers] = useState<string[]>(['', '', '', '', ''])
   const [generatedPrompt, setGeneratedPrompt] = useState('')
   const [copied, setCopied] = useState(false)
@@ -292,6 +306,7 @@ export default function Level4Page() {
 
   return (
     <>
+      {showBriefing && <LevelBriefingModal data={briefingData} onEnter={() => setShowBriefing(false)} />}
       <TableOfContents sections={activeSections} />
 
       <motion.main

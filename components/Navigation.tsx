@@ -134,7 +134,7 @@ export default function Navigation() {
               </div>
             </Link>
 
-            <Link href="/level/1" onClick={() => setMenuOpen(false)} style={{ textDecoration: 'none', display: 'block' }}>
+            <Link href="/onboarding?slide=3" onClick={() => setMenuOpen(false)} style={{ textDecoration: 'none', display: 'block' }}>
               <div
                 style={{ padding: '13px 16px', fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', color: isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)', cursor: 'pointer', transition: 'background 0.15s ease, color 0.15s ease', display: 'flex', alignItems: 'center', gap: 10 }}
                 onMouseEnter={e => { e.currentTarget.style.background = isHomePage ? 'rgba(242,155,28,0.1)' : 'rgba(242,155,28,0.06)'; e.currentTarget.style.color = 'var(--yellow)' }}

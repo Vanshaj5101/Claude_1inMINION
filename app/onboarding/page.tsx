@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import OnboardingCarousel from '@/components/landing/OnboardingCarousel'
 
 export default function OnboardingPage() {
@@ -18,7 +19,9 @@ export default function OnboardingPage() {
         zIndex: 0,
       }} />
       <div style={{ position: 'relative', zIndex: 1 }}>
-        <OnboardingCarousel />
+        <Suspense fallback={null}>
+          <OnboardingCarousel />
+        </Suspense>
       </div>
     </main>
   )

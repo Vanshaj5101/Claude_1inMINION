@@ -189,7 +189,8 @@ export default function Level1Page() {
                   {/* Try prompt */}
                   <div className="px-5 py-4 space-y-3">
                     <p className="text-xs font-mono font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>
-                      {concept.try_prompt?.instruction}
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                      {(() => { const hl = (concept.try_prompt as any)?.instruction_highlight; const instr = concept.try_prompt?.instruction ?? ''; if (!hl || !instr.includes(hl)) return instr; const idx = instr.indexOf(hl); return <>{instr.slice(0, idx)}<span style={{ color: '#1F2937', background: 'var(--yellow)', borderRadius: 3, padding: '1px 5px', fontWeight: 800 }}>{hl}</span>{instr.slice(idx + hl.length)}</>})()}
                     </p>
                     <PromptBlock
                       label={concept.label.toUpperCase()}

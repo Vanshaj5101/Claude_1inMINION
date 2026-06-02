@@ -309,11 +309,17 @@ export default function Level2Page() {
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>YOUR GPT CHAT SHOULD LOOK LIKE THIS</p>
+              <div className="space-y-2">
+                <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>ONCE UPLOADED, SEND THIS PROMPT</p>
                 <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
-                  <img src="/level2_data_uploaded.png" alt="1inMINION Data Strategist GPT with minion_mission_data.csv uploaded in chat" style={{ width: '100%', display: 'block' }} />
+                  <img src="/level2_gpt_with_data.png" alt="1inMINION Data Strategist GPT with mission data uploaded and first prompt ready" style={{ width: '100%', display: 'block' }} />
                 </div>
+                <PromptBlock
+                  label="FIRST PROMPT — AFTER UPLOADING THE FILE"
+                  promptText="Here is the data. Take a look and tell me what we are working with."
+                  variant="core"
+                  substituteMinion={true}
+                />
               </div>
             </div>
 
@@ -341,6 +347,25 @@ export default function Level2Page() {
             <p className="text-sm mt-2 leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
               {missionInstruction}
             </p>
+
+            {/* Minion behaviour callout */}
+            <div className="mt-4 rounded-lg p-4 space-y-2" style={{ background: 'rgba(242,155,28,0.06)', border: '1px solid rgba(242,155,28,0.25)' }}>
+              <span className="text-xs font-mono font-bold" style={{ color: 'var(--yellow-text)', letterSpacing: '0.08em' }}>EVERY TIME YOU ASK, CUSTOM GPT WILL:</span>
+              <ul className="space-y-1">
+                {[
+                  'Show the data in a table or chart so you can see it clearly',
+                  'Lead with the most surprising finding — not the obvious one',
+                  'Back every claim with a specific number or percentage',
+                  'End with one clear recommendation — no list of options',
+                  'Keep it sharp, warm, and slightly Minion-flavored',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>
+                    <span style={{ color: 'var(--yellow-text)', flexShrink: 0 }}>→</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div className="space-y-4">

@@ -4,8 +4,21 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Clipboard, Check } from 'lucide-react'
 import TableOfContents from '../TableOfContents'
+import LevelBriefingModal from '../LevelBriefingModal'
 
 const PADLET_URL = 'https://padlet.com/jcampb70/mission-complete-report-back-to-gru-8q5oc67etz2c0yay'
+
+const briefingData = {
+  level: {
+    number: '05',
+    title: 'Mission Debrief',
+    concept: 'Padlet',
+    duration: '10 min',
+    subdescription: 'The heist is complete. Report back to Gru. Share your A-Ha moments, plot twists, questions, and AI ideas — then see what your fellow teammates discovered.',
+  },
+  mission_targets: [],
+  mission_gear: [],
+}
 
 const tocSections = [
   { id: 'overview',  label: 'Overview' },
@@ -26,6 +39,7 @@ const columns = [
 ]
 
 export default function Level5Page() {
+  const [showBriefing, setShowBriefing] = useState(true)
   const [copied, setCopied] = useState(false)
 
   const handleCopy = () => {
@@ -36,6 +50,7 @@ export default function Level5Page() {
 
   return (
     <>
+      {showBriefing && <LevelBriefingModal data={briefingData} onEnter={() => setShowBriefing(false)} />}
       <TableOfContents sections={tocSections} />
 
       <motion.main {...fadeUp} className="pt-20 pb-32 max-w-3xl mx-auto px-4 sm:px-6 space-y-16">
