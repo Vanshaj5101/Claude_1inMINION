@@ -20,7 +20,7 @@ export default function StepCard({ stepNumber, title, description, children, che
         borderLeft: `2px solid ${checked ? 'var(--green)' : 'var(--yellow)'}`,
       }}
     >
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex items-start gap-3">
         <div className="flex-1">
           <p className="font-mono text-xs tracking-widest uppercase mb-1" style={{ color: checked ? 'var(--green)' : 'var(--yellow-text)' }}>
             STEP {stepNumber}
@@ -32,18 +32,20 @@ export default function StepCard({ stepNumber, title, description, children, che
             </p>
           )}
         </div>
-        {onCheck && (
+      </div>
+      {children && <div className="flex flex-col gap-4">{children}</div>}
+      {onCheck && (
+        <div className="flex justify-end">
           <button
             onClick={onCheck}
-            className="flex-shrink-0 flex items-center gap-1.5 transition-all duration-150 mt-1"
-            style={{ color: checked ? 'var(--green)' : 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: 11, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+            className="flex items-center gap-1.5 transition-all duration-150"
+            style={{ color: checked ? 'var(--green)' : '#4B5563', fontFamily: 'var(--font-mono)', fontSize: 11, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
           >
             {checked ? <CheckSquare size={18} /> : <Square size={18} />}
             <span className="hidden sm:inline">{checked ? 'Done' : 'Mark done'}</span>
           </button>
-        )}
-      </div>
-      {children && <div className="flex flex-col gap-4">{children}</div>}
+        </div>
+      )}
     </div>
   )
 }

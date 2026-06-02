@@ -36,10 +36,11 @@ export default function PromptBlock({ promptText, label, variant = 'core', subst
     const name = typeof window !== 'undefined'
       ? (localStorage.getItem('minionName') || 'YOUR MINION').toUpperCase()
       : 'YOUR MINION'
-    return promptText
+    const withSubstitutions = promptText
       .replace(/\[YOUR MINION'S NAME\]/g, name)
       .replace(/\[YOUR MINION NAME\]/g, name)
       .replace(/\[MINION NAME\]/g, name)
+    return `Hey ${name},\n\n${withSubstitutions}`
   }
 
   const handleCopy = async () => {

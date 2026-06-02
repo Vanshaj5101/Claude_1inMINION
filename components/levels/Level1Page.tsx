@@ -56,7 +56,7 @@ export default function Level1Page() {
         <LevelBriefingModal data={briefingData} onEnter={handleEnter} />
       )}
 
-      <TableOfContents sections={tocSections} />
+      <TableOfContents sections={tocSections} checked={checked} />
 
       <motion.main {...fadeUp} className="pt-20 pb-32 max-w-3xl mx-auto px-4 sm:px-6 space-y-16">
 
@@ -91,7 +91,7 @@ export default function Level1Page() {
           </StepCard>
 
           <StepCard stepNumber={goodCard.card} title={goodCard.title} description={goodCard.description} checked={checked[1]} onCheck={() => toggleCheck(1)}>
-            <PromptBlock label={res['prompt-good'].label.toUpperCase()} promptText={goodPrompt} variant="core" />
+            <PromptBlock label={res['prompt-good'].label.toUpperCase()} promptText={goodPrompt} variant="core" substituteMinion={true} />
             <div className="p-3 rounded-lg" style={{ background: 'rgba(255,215,0,0.06)', border: '1px solid rgba(255,215,0,0.2)' }}>
               <p className="text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>
                 <span style={{ color: 'var(--yellow-text)' }}>💡 </span>{res['prompt-good'].note}
@@ -171,23 +171,13 @@ export default function Level1Page() {
                 >
                   {/* Concept header */}
                   <div className="px-5 py-4 space-y-1" style={{ borderBottom: '1px solid var(--border)' }}>
-                    <div className="flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <span
-                          className="font-mono font-bold text-xs px-2 py-0.5 rounded"
-                          style={{ background: isLayerDone ? 'var(--green)' : 'var(--yellow)', color: isLayerDone ? 'white' : 'var(--text-primary)', whiteSpace: 'nowrap' }}
-                        >
-                          {concept.label}
-                        </span>
-                      </div>
-                      <button
-                        onClick={() => toggleCheck(layerCheckIdx)}
-                        className="flex-shrink-0 flex items-center gap-1.5 transition-all duration-150 mt-0.5"
-                        style={{ color: isLayerDone ? 'var(--green)' : 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontSize: 11, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                    <div className="flex items-center gap-3">
+                      <span
+                        className="font-mono font-bold text-xs px-2 py-0.5 rounded"
+                        style={{ background: isLayerDone ? 'var(--green)' : 'var(--yellow)', color: isLayerDone ? 'white' : 'var(--text-primary)', whiteSpace: 'nowrap' }}
                       >
-                        {isLayerDone ? <CheckSquare size={18} /> : <Square size={18} />}
-                        <span className="hidden sm:inline">{isLayerDone ? 'Done' : 'Mark done'}</span>
-                      </button>
+                        {concept.label}
+                      </span>
                     </div>
                     <p className="text-sm leading-relaxed pt-1" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
                       {concept.concept_intro}
@@ -203,6 +193,7 @@ export default function Level1Page() {
                       label={concept.label.toUpperCase()}
                       promptText={concept.try_prompt?.content ?? ''}
                       variant="core"
+                      substituteMinion={true}
                       highlightText={addedHighlight}
                     />
                     {whatChanged && (
@@ -211,6 +202,16 @@ export default function Level1Page() {
                         <p className="text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>{whatChanged}</p>
                       </div>
                     )}
+                    <div className="flex justify-end">
+                      <button
+                        onClick={() => toggleCheck(layerCheckIdx)}
+                        className="flex items-center gap-1.5 transition-all duration-150"
+                        style={{ color: isLayerDone ? 'var(--green)' : '#4B5563', fontFamily: 'var(--font-mono)', fontSize: 11, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                      >
+                        {isLayerDone ? <CheckSquare size={18} /> : <Square size={18} />}
+                        <span className="hidden sm:inline">{isLayerDone ? 'Done' : 'Mark done'}</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               )
@@ -254,6 +255,7 @@ export default function Level1Page() {
                           label={adv.label.toUpperCase()}
                           promptText={adv.try_prompt?.content ?? ''}
                           variant="advanced"
+                          substituteMinion={true}
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           highlightText={(adv as any).added_highlight ?? null}
                         />

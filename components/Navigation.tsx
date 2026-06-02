@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 // const LEVELS = [1, 2, 3, 4]           // Level 04 temporarily hidden
 // const LEVEL_LABELS = ['Level 1', 'Level 2', 'Level 3', 'Level 4']
@@ -14,6 +14,18 @@ export default function Navigation() {
   const pathname = usePathname()
   const [completedLevels, setCompletedLevels] = useState<number[]>([])
   const [hoveredLevel, setHoveredLevel] = useState<number | null>(null)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('completedLevels') || '[]') as number[]
@@ -47,6 +59,96 @@ export default function Navigation() {
       >
         <Image src="/1inMINION.png" alt="1inMINION" width={160} height={60} style={{ objectFit: 'contain' }} />
       </Link>
+
+      {/* Right: menu */}
+      <div ref={menuRef} style={{ flexShrink: 0, position: 'relative' }}>
+        <button
+          onClick={() => setMenuOpen(o => !o)}
+          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 22px rgba(242,155,28,0.6)' }}
+          onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 3px 14px rgba(242,155,28,0.4)' }}
+          style={{
+            fontFamily: 'var(--font-mono)',
+            fontSize: 12,
+            fontWeight: 700,
+            letterSpacing: '0.14em',
+            color: '#1F2937',
+            background: 'var(--yellow)',
+            border: 'none',
+            padding: '9px 20px',
+            borderRadius: 8,
+            whiteSpace: 'nowrap',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            boxShadow: '0 3px 14px rgba(242,155,28,0.4)',
+            transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+          }}
+        >
+          MENU
+          {/* Hamburger lines */}
+          <span style={{ display: 'flex', flexDirection: 'column', gap: 3.5, flexShrink: 0 }}>
+            <span style={{ display: 'block', width: 14, height: 1.5, background: '#1F2937', borderRadius: 1 }} />
+            <span style={{ display: 'block', width: 10, height: 1.5, background: '#1F2937', borderRadius: 1 }} />
+            <span style={{ display: 'block', width: 14, height: 1.5, background: '#1F2937', borderRadius: 1 }} />
+          </span>
+        </button>
+
+        {menuOpen && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 'calc(100% + 10px)',
+              right: 0,
+              minWidth: 200,
+              background: isHomePage ? 'rgba(8,12,24,0.97)' : 'var(--bg-primary)',
+              border: isHomePage ? '1px solid rgba(242,155,28,0.3)' : '1px solid var(--border)',
+              borderTop: '2px solid var(--yellow)',
+              borderRadius: 10,
+              boxShadow: isHomePage
+                ? '0 12px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(242,155,28,0.1)'
+                : '0 8px 32px rgba(0,0,0,0.14)',
+              overflow: 'hidden',
+              zIndex: 100,
+              backdropFilter: isHomePage ? 'blur(16px)' : 'none',
+            }}
+          >
+            <div style={{
+              padding: '8px 16px 6px',
+              fontFamily: 'var(--font-mono)',
+              fontSize: 9,
+              fontWeight: 700,
+              letterSpacing: '0.2em',
+              color: 'var(--yellow)',
+              borderBottom: isHomePage ? '1px solid rgba(242,155,28,0.15)' : '1px solid var(--border)',
+            }}>
+              // NAVIGATE
+            </div>
+
+            <Link href="/level/1" onClick={() => setMenuOpen(false)} style={{ textDecoration: 'none', display: 'block' }}>
+              <div
+                style={{ padding: '13px 16px', fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', color: isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)', borderBottom: isHomePage ? '1px solid rgba(255,255,255,0.06)' : '1px solid var(--border)', cursor: 'pointer', transition: 'background 0.15s ease, color 0.15s ease', display: 'flex', alignItems: 'center', gap: 10 }}
+                onMouseEnter={e => { e.currentTarget.style.background = isHomePage ? 'rgba(242,155,28,0.1)' : 'rgba(242,155,28,0.06)'; e.currentTarget.style.color = 'var(--yellow)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)' }}
+              >
+                <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--yellow)', flexShrink: 0 }} />
+                ACTIVITY
+              </div>
+            </Link>
+
+            <Link href="/slides" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} style={{ textDecoration: 'none', display: 'block' }}>
+              <div
+                style={{ padding: '13px 16px', fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', color: isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)', cursor: 'pointer', transition: 'background 0.15s ease, color 0.15s ease', display: 'flex', alignItems: 'center', gap: 10 }}
+                onMouseEnter={e => { e.currentTarget.style.background = isHomePage ? 'rgba(242,155,28,0.1)' : 'rgba(242,155,28,0.06)'; e.currentTarget.style.color = 'var(--yellow)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)' }}
+              >
+                <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--yellow)', flexShrink: 0 }} />
+                SLIDE DECK
+              </div>
+            </Link>
+          </div>
+        )}
+      </div>
 
       {/* Center: level progress track — level pages only */}
       {isLevelPage && (
@@ -155,37 +257,6 @@ export default function Navigation() {
         </div>
       )}
 
-      {/* Right: slide deck button */}
-      <Link
-        href="/slides"
-        target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          width: 160,
-          flexShrink: 0,
-          display: 'flex',
-          justifyContent: 'flex-end',
-          textDecoration: 'none',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 11,
-            fontWeight: 700,
-            letterSpacing: '0.1em',
-            color: '#1F2937',
-            background: 'var(--yellow)',
-            border: '1px solid transparent',
-            padding: '7px 16px',
-            borderRadius: 8,
-            whiteSpace: 'nowrap',
-            cursor: 'pointer',
-          }}
-        >
-          SLIDE DECK ↗
-        </span>
-      </Link>
     </nav>
   )
 }
