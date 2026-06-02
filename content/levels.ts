@@ -23,13 +23,20 @@ export const levels = [
     duration: "15 min",
     color: "blue",
   },
-  // LEVEL 04 — temporarily hidden
-  // {
-  //   number: "04",
-  //   title: "Give Minion the Wheel",
-  //   concept: "Agents + MCPs",
-  //   description: "Give your Minion a goal and step back. Watch them plan, execute, and act in the real world.",
-  //   duration: "10 min",
-  //   color: "orange",
-  // },
+  {
+    number: "04",
+    title: "Beyond the Mission",
+    concept: "AI Opportunity Finder",
+    description: "Map where AI can make the biggest difference in your own work. Five questions. One personalised prompt. Your AI plan for FY27.",
+    duration: "15 min",
+    color: "orange",
+  },
+  {
+    number: "05",
+    title: "Mission Debrief",
+    concept: "Padlet",
+    description: "The heist is complete. Report back to Gru. Share your A-Ha moments, plot twists, questions, and AI ideas with the team.",
+    duration: "10 min",
+    color: "yellow",
+  },
 ] as const

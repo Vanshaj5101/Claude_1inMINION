@@ -7,6 +7,7 @@ import PromptBlock from '../PromptBlock'
 import MissionCheck from '../MissionCheck'
 import LevelBriefingModal from '../LevelBriefingModal'
 import LevelBriefingSection from '../LevelBriefingSection'
+import LevelProgressCard from '../LevelProgressCard'
 import TableOfContents from '../TableOfContents'
 import briefingData from '@/content/levels/level3/level_03_briefing.json'
 import resourcesData from '@/content/levels/level3/level_03_resources.json'
@@ -22,7 +23,9 @@ export default function Level3Page() {
 
   // checked[0]: opened the GPT
   // checked[1]: ran the prompt
-  const [checked, setChecked] = useState<boolean[]>(() => new Array(2).fill(false))
+  // checked[2]: received the HTML project plan
+  // checked[3]: project plan includes risks, quick win, checklist
+  const [checked, setChecked] = useState<boolean[]>(() => new Array(4).fill(false))
   const toggleCheck = useCallback((i: number) => {
     setChecked(prev => { const next = [...prev]; next[i] = !next[i]; return next })
   }, [])
@@ -45,7 +48,7 @@ export default function Level3Page() {
         <LevelBriefingModal data={briefingData} onEnter={handleEnter} />
       )}
 
-      <TableOfContents sections={tocSections} />
+      <TableOfContents sections={tocSections} checked={checked} />
 
       <motion.main {...fadeUp} className="pt-20 pb-32 max-w-3xl mx-auto px-4 sm:px-6 space-y-16">
 
@@ -60,6 +63,7 @@ export default function Level3Page() {
           </p>
           <span className="pill-badge">⏱ {briefingData.level.duration.toUpperCase()}</span>
           <LevelBriefingSection data={briefingData} />
+          <LevelProgressCard checked={checked} />
           <div style={{ borderTop: '1px solid var(--border)' }} />
         </section>
 
@@ -194,8 +198,8 @@ export default function Level3Page() {
         <div id="mission-check">
           <MissionCheck
             items={briefingData.mission_check}
-            nextLevel="/"
-            nextLabel="MISSION COMPLETE — RETURN TO BASE"
+            nextLevel="/level/4"
+            nextLabel="ADVANCE TO LEVEL 04: BEYOND THE MISSION"
             levelNumber={3}
             isFinale={true}
             checked={checked}

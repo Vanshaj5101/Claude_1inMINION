@@ -8,6 +8,7 @@ import StepCard from '../StepCard'
 import MissionCheck from '../MissionCheck'
 import LevelBriefingModal from '../LevelBriefingModal'
 import LevelBriefingSection from '../LevelBriefingSection'
+import LevelProgressCard from '../LevelProgressCard'
 import TableOfContents from '../TableOfContents'
 import briefingData from '@/content/levels/level1/level_01_briefing.json'
 import stepsData from '@/content/levels/level1/level_01_steps.json'
@@ -71,6 +72,7 @@ export default function Level1Page() {
           </p>
           <span className="pill-badge">⏱ {briefingData.level.duration.toUpperCase()}</span>
           <LevelBriefingSection data={briefingData} />
+          <LevelProgressCard checked={checked} />
           <div style={{ borderTop: '1px solid var(--border)' }} />
         </section>
 

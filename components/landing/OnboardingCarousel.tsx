@@ -122,10 +122,8 @@ export default function OnboardingCarousel() {
               TRAINING PROGRAM
             </span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 5vw, 60px)', color: 'white', lineHeight: 1.1, margin: 0 }}>
-              {/* 4 Levels. 60 Minutes. One Heist Plan. */}{/* Level 04 temporarily hidden */}
-              3 Levels. 60 Minutes. One Heist Plan.
+              5 Levels. 90 Minutes. One Heist Plan.
             </h2>
-            {/* gridTemplateColumns: 'repeat(4, 1fr)' — Level 04 temporarily hidden */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, width: '100%' }}>
               {levels.map(level => {
                 const accent = accentColor[level.color] ?? 'var(--yellow)'
@@ -137,8 +135,10 @@ export default function OnboardingCarousel() {
                     onMouseLeave={() => setHoveredCard(null)}
                     style={{
                       background: isHovered ? 'rgba(6,10,22,0.85)' : 'rgba(6,10,22,0.60)',
-                      border: `1px solid ${isHovered ? accent : 'rgba(255,255,255,0.10)'}`,
                       borderTop: `3px solid ${accent}`,
+                      borderRight: `1px solid ${isHovered ? accent : 'rgba(255,255,255,0.10)'}`,
+                      borderBottom: `1px solid ${isHovered ? accent : 'rgba(255,255,255,0.10)'}`,
+                      borderLeft: `1px solid ${isHovered ? accent : 'rgba(255,255,255,0.10)'}`,
                       borderRadius: 12,
                       padding: '20px 16px',
                       display: 'flex',

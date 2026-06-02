@@ -5,10 +5,8 @@ import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState, useRef } from 'react'
 
-// const LEVELS = [1, 2, 3, 4]           // Level 04 temporarily hidden
-// const LEVEL_LABELS = ['Level 1', 'Level 2', 'Level 3', 'Level 4']
-const LEVELS = [1, 2, 3]
-const LEVEL_LABELS = ['Level 1', 'Level 2', 'Level 3']
+const LEVELS = [1, 2, 3, 4, 5]
+const LEVEL_LABELS = ['Talk to Your Minion', 'Arm Your Minion', 'The Mission Plan', 'Beyond the Mission', 'Mission Debrief']
 
 export default function Navigation() {
   const pathname = usePathname()
@@ -125,25 +123,25 @@ export default function Navigation() {
               // NAVIGATE
             </div>
 
-            <Link href="/level/1" onClick={() => setMenuOpen(false)} style={{ textDecoration: 'none', display: 'block' }}>
+            <Link href="/slides" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} style={{ textDecoration: 'none', display: 'block' }}>
               <div
                 style={{ padding: '13px 16px', fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', color: isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)', borderBottom: isHomePage ? '1px solid rgba(255,255,255,0.06)' : '1px solid var(--border)', cursor: 'pointer', transition: 'background 0.15s ease, color 0.15s ease', display: 'flex', alignItems: 'center', gap: 10 }}
                 onMouseEnter={e => { e.currentTarget.style.background = isHomePage ? 'rgba(242,155,28,0.1)' : 'rgba(242,155,28,0.06)'; e.currentTarget.style.color = 'var(--yellow)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)' }}
               >
                 <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--yellow)', flexShrink: 0 }} />
-                ACTIVITY
+                SLIDE DECK
               </div>
             </Link>
 
-            <Link href="/slides" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)} style={{ textDecoration: 'none', display: 'block' }}>
+            <Link href="/level/1" onClick={() => setMenuOpen(false)} style={{ textDecoration: 'none', display: 'block' }}>
               <div
                 style={{ padding: '13px 16px', fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.12em', color: isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)', cursor: 'pointer', transition: 'background 0.15s ease, color 0.15s ease', display: 'flex', alignItems: 'center', gap: 10 }}
                 onMouseEnter={e => { e.currentTarget.style.background = isHomePage ? 'rgba(242,155,28,0.1)' : 'rgba(242,155,28,0.06)'; e.currentTarget.style.color = 'var(--yellow)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)' }}
               >
                 <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--yellow)', flexShrink: 0 }} />
-                SLIDE DECK
+                ACTIVITY
               </div>
             </Link>
           </div>
@@ -154,19 +152,18 @@ export default function Navigation() {
       {isLevelPage && (
         <div
           className="absolute left-1/2 -translate-x-1/2"
-          style={{ width: 'calc(100% - 380px)', maxWidth: 800 }}
+          style={{ width: 'calc(100% - 460px)', maxWidth: 740 }}
         >
           {/* Connector lines — positioned relative to full track, circle-center to circle-center */}
           <div style={{ position: 'relative', height: 40 }}>
-            {/* [0, 1, 2] — Level 04 temporarily hidden */}
-            {[0, 1].map(idx => {
+            {[0, 1, 2, 3].map(idx => {
               const nextReached = completedLevels.includes(idx + 2) || (idx + 2) === currentLevel
               return (
                 <div key={idx} style={{
                   position: 'absolute',
                   top: 19,
-                  left: `calc(${16.67 + idx * 33.33}% + 20px)`,
-                  width: `calc(33.33% - 40px)`,
+                  left: `calc(${10 + idx * 20}% + 18px)`,
+                  width: `calc(20% - 36px)`,
                   height: 2,
                   background: nextReached
                     ? 'linear-gradient(to right, var(--yellow-muted), rgba(255,215,0,0.35))'
@@ -179,8 +176,7 @@ export default function Navigation() {
             })}
 
             {/* Circles */}
-            {/* gridTemplateColumns: 'repeat(4, 1fr)' — Level 04 temporarily hidden */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', height: '100%', position: 'relative', zIndex: 1 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', height: '100%', position: 'relative', zIndex: 1 }}>
               {LEVELS.map((n, idx) => {
                 const isCompleted = completedLevels.includes(n)
                 const isCurrent   = n === currentLevel
@@ -236,18 +232,19 @@ export default function Navigation() {
           </div>
 
           {/* Labels row — grid mirrors circles grid for perfect alignment */}
-          {/* gridTemplateColumns: 'repeat(4, 1fr)' — Level 04 temporarily hidden */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', marginTop: 6 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', marginTop: 4 }}>
             {LEVELS.map((n, idx) => {
               const isCompleted = completedLevels.includes(n)
               const isCurrent   = n === currentLevel
               return (
                 <span key={n} style={{
-                  fontFamily: 'var(--font-mono)', fontSize: 10,
+                  fontFamily: 'var(--font-mono)', fontSize: 9,
                   fontWeight: isCurrent ? 700 : 500,
                   color: isCurrent ? 'var(--yellow-muted)' : isCompleted ? 'var(--yellow-muted)' : 'var(--text-muted)',
-                  letterSpacing: '0.04em', whiteSpace: 'nowrap',
+                  letterSpacing: '0.02em',
                   textAlign: 'center', display: 'block',
+                  overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                  padding: '0 4px',
                 }}>
                   {LEVEL_LABELS[idx]}
                 </span>

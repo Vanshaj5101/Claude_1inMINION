@@ -7,6 +7,7 @@ import PromptBlock from '../PromptBlock'
 import MissionCheck from '../MissionCheck'
 import LevelBriefingModal from '../LevelBriefingModal'
 import LevelBriefingSection from '../LevelBriefingSection'
+import LevelProgressCard from '../LevelProgressCard'
 import TableOfContents from '../TableOfContents'
 import briefingData from '@/content/levels/level2/level_02_briefing.json'
 import resourcesData from '@/content/levels/level2/level_02_resources.json'
@@ -110,6 +111,7 @@ export default function Level2Page() {
           </p>
           <span className="pill-badge">⏱ {briefingData.level.duration.toUpperCase()}</span>
           <LevelBriefingSection data={briefingData} />
+          <LevelProgressCard checked={checked} />
           <div style={{ borderTop: '1px solid var(--border)' }} />
         </section>
 
