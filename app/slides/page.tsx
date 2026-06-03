@@ -61,23 +61,25 @@ const SLIDES = [
           Your mission: train an AI Minion, analyze 374 previous heist records, and build a mission plan
           worthy of Villain HQ.
         </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 14, width: '100%' }}>
           {[
             { num: '01', title: 'Talk to Your Minion', concept: 'Prompt Engineering', time: '20 min', color: '#f29b1c' },
             { num: '02', title: 'Arm Your Minion', concept: 'Custom GPTs', time: '25 min', color: '#8B5CF6' },
             { num: '03', title: 'The Mission Plan', concept: 'Custom GPTs', time: '15 min', color: '#3B82F6' },
+            { num: '04', title: 'Beyond the Mission', concept: 'AI Opportunity Finder', time: '15 min', color: '#F97316' },
+            { num: '05', title: 'Mission Debrief', concept: 'Padlet', time: '10 min', color: '#f29b1c' },
           ].map(l => (
             <div key={l.num} style={{
               background: 'rgba(255,255,255,0.05)',
               border: `1px solid ${l.color}44`,
               borderTop: `3px solid ${l.color}`,
               borderRadius: 12,
-              padding: '16px',
+              padding: '18px 14px',
             }}>
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.1em' }}>LEVEL {l.num}</span>
-              <p style={{ margin: '6px 0 4px', color: 'white', fontWeight: 700, fontSize: 15 }}>{l.title}</p>
-              <p style={{ margin: 0, color: l.color, fontSize: 12, fontWeight: 600 }}>{l.concept}</p>
-              <p style={{ margin: '8px 0 0', color: 'rgba(255,255,255,0.4)', fontSize: 12 }}>{l.time}</p>
+              <p style={{ margin: '8px 0 5px', color: 'white', fontWeight: 700, fontSize: 16 }}>{l.title}</p>
+              <p style={{ margin: 0, color: l.color, fontSize: 13, fontWeight: 600 }}>{l.concept}</p>
+              <p style={{ margin: '10px 0 0', color: 'rgba(255,255,255,0.4)', fontSize: 12 }}>{l.time}</p>
             </div>
           ))}
         </div>
@@ -85,7 +87,41 @@ const SLIDES = [
     ),
   },
 
-  // ── 04. Level 1 ──────────────────────────────────────────────────────────────
+  // ── 04. Get Ready ────────────────────────────────────────────────────────────
+  {
+    eyebrow: 'BEFORE WE START',
+    title: 'Get Ready',
+    isTitle: false,
+    body: (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 18, lineHeight: 1.75 }}>
+          In the next two minutes, make sure you have everything you need to run the mission.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+          {[
+            { icon: '🤝', label: 'A partner', desc: 'Find someone to go through the activities with you', color: '#f29b1c', link: null },
+            { icon: '💻', label: 'A laptop', desc: 'You will need ChatGPT open throughout the session', color: '#8B5CF6', link: null },
+            { icon: '🔗', label: 'The activity page', desc: 'This is your mission control', color: '#3B82F6', link: 'https://1in-minion.vercel.app/' },
+          ].map(item => (
+            <div key={item.label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 14, background: 'rgba(255,255,255,0.05)', border: `1px solid ${item.color}44`, borderTop: `3px solid ${item.color}`, borderRadius: 12, padding: '28px 20px' }}>
+              <span style={{ fontSize: 40 }}>{item.icon}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <p style={{ margin: 0, color: 'white', fontWeight: 700, fontSize: 18 }}>{item.label}</p>
+                <p style={{ margin: 0, color: 'rgba(255,255,255,0.55)', fontSize: 14 }}>{item.desc}</p>
+                {item.link && (
+                  <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ color: item.color, fontWeight: 700, fontSize: 15, marginTop: 6, textDecoration: 'none' }}>
+                    1in-minion.vercel.app ↗
+                  </a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+
+  // ── 05. Level 1 ──────────────────────────────────────────────────────────────
   {
     eyebrow: 'HEIST TO THE SUN',
     title: 'Level 01 - Talk to Your Minion',
@@ -96,10 +132,16 @@ const SLIDES = [
           <span style={{ background: '#f29b1c22', border: '1px solid #f29b1c66', borderRadius: 8, padding: '4px 12px', color: '#f29b1c', fontWeight: 700, fontSize: 13 }}>Prompt Engineering</span>
           <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>20 min</span>
         </div>
-        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 18, lineHeight: 1.75 }}>
-          Apply core prompt engineering principles to get more effective, consistent outputs from AI.
-          Because a well-trained Minion starts with a well-structured order.
+        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 17, lineHeight: 1.75 }}>
+          Your Minion just arrived. They are eager, willing, and understand absolutely nothing. The quality of their response depends entirely on the quality of your order. Learn to give precise, structured prompts and watch your Minion transform from confused to capable.
         </p>
+        <ul style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingLeft: 0, listStyle: 'none', margin: 0 }}>
+          {['Apply core prompt engineering principles — role, context, task, format, and constraints — to write more effective AI prompts', 'Run a vague prompt and a structured prompt side by side — see the difference immediately', 'Build your own prompt layer by layer and compare your first attempt to your final version'].map((t, i) => (
+            <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', color: 'rgba(255,255,255,0.65)', fontSize: 14, lineHeight: 1.6 }}>
+              <span style={{ color: '#f29b1c', flexShrink: 0, marginTop: 2 }}>→</span>{t}
+            </li>
+          ))}
+        </ul>
       </div>
     ),
   },
@@ -115,10 +157,16 @@ const SLIDES = [
           <span style={{ background: '#8B5CF622', border: '1px solid #8B5CF666', borderRadius: 8, padding: '4px 12px', color: '#8B5CF6', fontWeight: 700, fontSize: 13 }}>Custom GPTs</span>
           <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>25 min</span>
         </div>
-        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 18, lineHeight: 1.75 }}>
-          Custom GPTs give AI a permanent specialty - no re-briefing, no guessing, same quality every time.
-          Arm your Minion with real data and watch them become the smartest strategist in the room.
+        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 17, lineHeight: 1.75 }}>
+          Your Minion understands your orders now. But the sun does not steal itself. Arm them as a data-driven strategist, load 374 mission records, and let them find the pattern nobody spotted.
         </p>
+        <ul style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingLeft: 0, listStyle: 'none', margin: 0 }}>
+          {['Build your first Custom GPT trained as a data-driven mission strategist', 'Upload the mission data file so your GPT can analyze 374 previous heist records', 'Find answers to the 5 mission questions from the data', 'Invent one special tool and compile everything into a mission debrief file'].map((t, i) => (
+            <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', color: 'rgba(255,255,255,0.65)', fontSize: 14, lineHeight: 1.6 }}>
+              <span style={{ color: '#8B5CF6', flexShrink: 0, marginTop: 2 }}>→</span>{t}
+            </li>
+          ))}
+        </ul>
       </div>
     ),
   },
@@ -134,110 +182,71 @@ const SLIDES = [
           <span style={{ background: '#3B82F622', border: '1px solid #3B82F666', borderRadius: 8, padding: '4px 12px', color: '#3B82F6', fontWeight: 700, fontSize: 13 }}>Custom GPTs</span>
           <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>15 min</span>
         </div>
-        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 18, lineHeight: 1.75 }}>
-          See how a well-built specialist GPT takes your inputs and produces something structured,
-          beautiful, and ready to use - without you writing a single extra instruction.
+        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 17, lineHeight: 1.75 }}>
+          Gru does not show up unprepared. Neither does your Minion. Upload your debrief and watch your Minion turn data into a masterplan. The heist starts here.
         </p>
+        <ul style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingLeft: 0, listStyle: 'none', margin: 0 }}>
+          {['Open the pre-built 1inMINION Project Manager Custom GPT', 'Upload your Level 2 mission debrief and run the prompt', 'Receive a structured HTML project plan with risks, a quick win, and an interactive checklist'].map((t, i) => (
+            <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', color: 'rgba(255,255,255,0.65)', fontSize: 14, lineHeight: 1.6 }}>
+              <span style={{ color: '#3B82F6', flexShrink: 0, marginTop: 2 }}>→</span>{t}
+            </li>
+          ))}
+        </ul>
       </div>
     ),
   },
 
-  // ── 07. AI in Your Work ───────────────────────────────────────────────────────
+  // ── 07. Level 4 ──────────────────────────────────────────────────────────────
   {
-    eyebrow: 'BEYOND THE MISSION',
-    title: 'Integrating AI in Your Work',
+    eyebrow: 'BEYOND THE HEIST',
+    title: 'Level 04 - Beyond the Mission',
     isTitle: false,
     body: (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 18, lineHeight: 1.75 }}>
-          The heist was practice. Now the real mission starts.
-        </p>
-        <p style={{ color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>
-          AI fits into the workflows, systems, and recurring tasks you already own - helping you
-          move faster, stay consistent, and scale what you do best. The next step is figuring out
-          exactly where it belongs for you.
-        </p>
-        <div style={{ background: 'rgba(242,155,28,0.08)', border: '1px solid rgba(242,155,28,0.25)', borderLeft: '4px solid #f29b1c', borderRadius: 8, padding: '16px' }}>
-          <span style={{ color: '#f29b1c', fontWeight: 700 }}>Your next move:</span>
-          <p style={{ margin: '8px 0 0', color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>
-            Go to the <span style={{ color: '#f29b1c', fontWeight: 700 }}>Beyond the Mission</span> page on the website.
-            Answer 5 quick questions about your role and tasks.
-            A personalised AI prompt will be generated for you - copy it into ChatGPT and
-            discover where AI can save you the most time.
-          </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          <span style={{ background: '#F9731622', border: '1px solid #F9731666', borderRadius: 8, padding: '4px 12px', color: '#F97316', fontWeight: 700, fontSize: 13 }}>AI Opportunity Finder</span>
+          <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>15 min</span>
         </div>
+        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 17, lineHeight: 1.75 }}>
+          Map where AI can make the biggest difference in your own work. Five questions. One personalised prompt. Your AI plan for FY27.
+        </p>
+        <ul style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingLeft: 0, listStyle: 'none', margin: 0 }}>
+          {['Answer 5 quick questions about your role, time sinks, quality gaps, repetitive tasks, and AI hunch', 'Generate a personalised AI prompt built around your actual work', 'Copy it into ChatGPT and discover exactly where AI can save you the most time', 'Complete the Hackathon Exit Ticket to log your AI workflows for FY27'].map((t, i) => (
+            <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', color: 'rgba(255,255,255,0.65)', fontSize: 14, lineHeight: 1.6 }}>
+              <span style={{ color: '#F97316', flexShrink: 0, marginTop: 2 }}>→</span>{t}
+            </li>
+          ))}
+        </ul>
       </div>
     ),
   },
 
-  // ── 08. Exit Ticket ───────────────────────────────────────────────────────────
-  {
-    eyebrow: 'EXIT TICKET',
-    title: 'Hackathon Exit Ticket',
-    isTitle: false,
-    body: (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <div>
-          <span style={{ color: '#f29b1c', fontWeight: 700 }}>Directions:</span>
-          <p style={{ marginTop: 8, color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>
-            Please complete the exit ticket below. Submit one form per working group.
-            Your responses will help identify themes for AI integration, usage, and
-            opportunities for training and support.
-          </p>
-        </div>
-        <div>
-          <span style={{ color: '#f29b1c', fontWeight: 700 }}>Include:</span>
-          <ul style={{ marginTop: 8, paddingLeft: '1.5em', display: 'flex', flexDirection: 'column', gap: 6, color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>
-            <li>Both names (partners)</li>
-            <li>Select your team</li>
-            <li>List 1 to 2 ways AI can be incorporated in your work. If partners have different roles, please list 1 to 2 ways for each role.</li>
-          </ul>
-        </div>
-        <a href="https://forms.gle/v6DAhEfZg7LxgJMK6" target="_blank" rel="noopener noreferrer" style={{ color: '#f29b1c', fontWeight: 700, fontSize: 18, marginTop: 8, display: 'inline-block' }}>forms.gle/v6DAhEfZg7LxgJMK6 ↗</a>
-      </div>
-    ),
-  },
-
-  // ── 09. Share Out ─────────────────────────────────────────────────────────────
+  // ── 08. Level 5 ──────────────────────────────────────────────────────────────
   {
     eyebrow: 'MISSION DEBRIEF',
-    title: 'Share Out',
+    title: 'Level 05 - Mission Debrief',
     isTitle: false,
     body: (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 18, lineHeight: 1.75 }}>
-          Use the link below to access our{' '}
-          <span style={{ color: '#f29b1c', fontWeight: 700 }}>Mission Complete Padlet</span>{' '}
-          and add your intel.
-        </p>
-        <p style={{ color: 'rgba(255,255,255,0.72)', lineHeight: 1.75 }}>
-          Share a key takeaway, an a-ha moment, something that surprised you, or a question
-          you are still sitting with. Read what others post and steal an idea or two for yourself.
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12, marginTop: 8 }}>
-          {[
-            { label: 'A-Ha Moments', desc: 'Your biggest realisation from today' },
-            { label: 'Plot Twists', desc: 'Something that surprised or shocked you' },
-            { label: 'Curious Minions', desc: 'Questions you are still sitting with' },
-            { label: 'Go Bananas!', desc: 'Ideas you want to explore after today' },
-          ].map(col => (
-            <div key={col.label} style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.10)',
-              borderRadius: 10,
-              padding: '12px 14px',
-            }}>
-              <p style={{ margin: 0, color: '#f29b1c', fontWeight: 700, fontSize: 14 }}>{col.label}</p>
-              <p style={{ margin: '4px 0 0', color: 'rgba(255,255,255,0.5)', fontSize: 13 }}>{col.desc}</p>
-            </div>
-          ))}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          <span style={{ background: '#f29b1c22', border: '1px solid #f29b1c66', borderRadius: 8, padding: '4px 12px', color: '#f29b1c', fontWeight: 700, fontSize: 13 }}>Padlet</span>
+          <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 13 }}>10 min</span>
         </div>
-        <a href="https://padlet.com/jcampb70/mission-complete-report-back-to-gru-8q5oc67etz2c0yay" target="_blank" rel="noopener noreferrer" style={{ color: '#f29b1c', fontWeight: 700, fontSize: 18, marginTop: 8, display: 'inline-block' }}>padlet.com/jcampb70/mission-complete… ↗</a>
+        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 17, lineHeight: 1.75 }}>
+          The heist is complete. Report back to Gru. Share your A-Ha moments, plot twists, questions, and AI ideas with the team.
+        </p>
+        <ul style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingLeft: 0, listStyle: 'none', margin: 0 }}>
+          {['Post a note in A-Ha Moments, Plot Twists, Curious Minions, or Go Bananas!', 'Read what your fellow teammates discovered and steal an idea or two'].map((t, i) => (
+            <li key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', color: 'rgba(255,255,255,0.65)', fontSize: 14, lineHeight: 1.6 }}>
+              <span style={{ color: '#f29b1c', flexShrink: 0, marginTop: 2 }}>→</span>{t}
+            </li>
+          ))}
+        </ul>
       </div>
     ),
   },
 
-  // ── 10. Wrap Up ───────────────────────────────────────────────────────────────
+  // ── 09. Wrap Up ───────────────────────────────────────────────────────────────
   {
     eyebrow: 'A MINION THANKS',
     title: 'Wrap Up',
@@ -331,7 +340,7 @@ export default function SlidesPage() {
               overflowY: 'auto',
             }}>
               <div style={{
-                maxWidth: 820, width: '100%',
+                maxWidth: 1000, width: '100%',
                 display: 'flex', flexDirection: 'column',
                 gap: s.isTitle ? 20 : 24,
                 textAlign: s.isTitle ? 'center' : 'left',

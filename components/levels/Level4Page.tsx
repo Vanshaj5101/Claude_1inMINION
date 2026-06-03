@@ -77,7 +77,7 @@ const QUESTIONS: Question[] = [
 
 function buildPrompt(answers: string[]): string {
   const [q1, q2, q3, q4, q5] = answers
-  return `About my role:\n${q1}\n\nHere is context about my work:\n\nWhere I spend too much time:\n${q2}\n\nWhere quality could be better with more time:\n${q3}\n\nMy most repetitive tasks:\n${q4}\n\nWhere I feel AI could help me most:\n${q5}\n\nBefore suggesting anything, ask me up to 3 clarifying questions to better understand my role and how my workflows actually run.\n\nOnce you have enough context, identify at least 4 specific opportunities where AI could make a meaningful difference in my work.\n\nFor each opportunity share:\n- What the AI use case is and how it helps\n- How much time it could realistically save me per week\n\nAt the end, sort all 4 opportunities by where I should start first — based on ease of adoption and highest time saved.\n\nBe specific to my actual role and tasks. No generic advice.`
+  return `About my role:\n${q1}\n\nHere is context about my work:\n\nWhere I spend too much time:\n${q2}\n\nWhere quality could be better with more time:\n${q3}\n\nMy most repetitive tasks:\n${q4}\n\nWhere I feel AI could help me most:\n${q5}\n\nIdentify at least 4 specific opportunities where AI could make a meaningful difference in my work.\n\nFor each opportunity share:\n- What the AI use case is and how it helps\n- How much time it could realistically save me per week\n\nAt the end, sort all 4 opportunities by where I should start first — based on ease of adoption and highest time saved. Present this as a table with columns: Opportunity | What it does | Difficulty (Easy / Medium / Hard) | Time Saved Per Week.\n\nBe specific to my actual role and tasks. No generic advice.\n\nFinally, ask me up to 3 clarifying questions if you need more context to sharpen or improve any of the recommendations.`
 }
 
 // ─── TOC sections ─────────────────────────────────────────────────────────────
@@ -538,6 +538,23 @@ export default function Level4Page() {
               </div>
             </div>
           )}
+
+          {/* Advance to Level 5 */}
+          <a
+            href="/level/5"
+            className="w-full flex items-center justify-center gap-3 py-4 rounded-lg font-mono font-bold tracking-widest transition-all duration-200"
+            style={{
+              background: 'var(--yellow)',
+              color: '#0F0F1A',
+              fontSize: 12,
+              letterSpacing: '0.1em',
+              boxShadow: '0 4px 14px rgba(233,149,10,0.25), 0 1px 4px rgba(233,149,10,0.15)',
+              textDecoration: 'none',
+            }}
+          >
+            ADVANCE TO LEVEL 05: MISSION DEBRIEF
+            <ArrowRight size={16} />
+          </a>
         </section>
       </motion.main>
     </>

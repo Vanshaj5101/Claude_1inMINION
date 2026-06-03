@@ -108,28 +108,8 @@ export default function Level5Page() {
         <section id="padlet" className="space-y-5">
           <p className="section-eyebrow">// OPEN THE PADLET</p>
 
-          {/* Preview image */}
-          <div
-            className="rounded-xl overflow-hidden"
-            style={{ border: '1px solid var(--border)', boxShadow: 'var(--shadow-md)' }}
-          >
-            <img
-              src="/padlet-preview.png"
-              alt="Mission Complete: Report Back to Gru — Padlet board"
-              style={{ width: '100%', display: 'block' }}
-            />
-          </div>
-
           {/* Card: link + QR + button */}
-          <div
-            style={{
-              borderRadius: 14,
-              border: '1px solid var(--border)',
-              borderTop: '2px solid var(--yellow)',
-              background: 'var(--bg-secondary)',
-              overflow: 'hidden',
-            }}
-          >
+          <div style={{ borderRadius: 14, border: '1px solid var(--border)', borderTop: '2px solid var(--yellow)', background: 'var(--bg-secondary)', overflow: 'hidden' }}>
             {/* Body: text + button left, QR right */}
             <div className="flex items-center gap-6 p-6">
               <div className="flex-1 space-y-3">
@@ -139,50 +119,60 @@ export default function Level5Page() {
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                   Click any column, hit the <strong>+</strong> button, and drop your thought. Read what your fellow teammates posted too.
                 </p>
-
                 {/* Copyable link */}
                 <div className="flex items-center gap-2" style={{ background: 'var(--bg-tertiary)', border: '1px solid var(--border)', borderRadius: 8, padding: '6px 10px' }}>
                   <code style={{ flex: 1, fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--text-secondary)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                     padlet.com/jcampb70/mission-complete…
                   </code>
-                  <button
-                    type="button"
-                    onClick={handleCopy}
-                    className="flex items-center gap-1 flex-shrink-0 transition-all duration-150"
-                    style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: copied ? 'var(--green)' : 'var(--yellow-text)', background: copied ? 'rgba(5,150,105,0.08)' : 'rgba(242,155,28,0.08)', border: `1px solid ${copied ? 'var(--green)' : 'var(--yellow)'}`, borderRadius: 5, padding: '3px 8px', cursor: 'pointer' }}
-                  >
+                  <button type="button" onClick={handleCopy} className="flex items-center gap-1 flex-shrink-0 transition-all duration-150"
+                    style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: copied ? 'var(--green)' : 'var(--yellow-text)', background: copied ? 'rgba(5,150,105,0.08)' : 'rgba(242,155,28,0.08)', border: `1px solid ${copied ? 'var(--green)' : 'var(--yellow)'}`, borderRadius: 5, padding: '3px 8px', cursor: 'pointer' }}>
                     {copied ? <><Check size={10} /> COPIED</> : <><Clipboard size={10} /> COPY</>}
                   </button>
                 </div>
-
-                <a
-                  href={PADLET_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2"
-                  style={{ fontFamily: 'var(--font-display)', fontSize: 16, letterSpacing: '0.04em', color: '#1F2937', background: 'var(--yellow)', border: 'none', borderRadius: 10, padding: '11px 22px', textDecoration: 'none', boxShadow: '0 3px 12px rgba(242,155,28,0.35)', transition: 'background 0.18s ease, transform 0.15s ease, box-shadow 0.15s ease' }}
-                  onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = 'var(--yellow-muted)'; el.style.transform = 'translateY(-1px)'; el.style.boxShadow = '0 5px 18px rgba(242,155,28,0.45)' }}
-                  onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = 'var(--yellow)'; el.style.transform = 'translateY(0)'; el.style.boxShadow = '0 3px 12px rgba(242,155,28,0.35)' }}
-                >
+                <a href={PADLET_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2"
+                  style={{ fontFamily: 'var(--font-display)', fontSize: 16, letterSpacing: '0.04em', color: '#1F2937', background: 'var(--yellow)', border: 'none', borderRadius: 10, padding: '11px 22px', textDecoration: 'none', boxShadow: '0 3px 12px rgba(242,155,28,0.35)', transition: 'background 0.18s ease, transform 0.15s ease' }}
+                  onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = 'var(--yellow-muted)'; el.style.transform = 'translateY(-1px)' }}
+                  onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background = 'var(--yellow)'; el.style.transform = 'translateY(0)' }}>
                   Open Padlet →
                 </a>
               </div>
-
-              {/* Divider */}
               <div style={{ width: 1, alignSelf: 'stretch', background: 'var(--border)', flexShrink: 0 }} />
-
-              {/* QR */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, flexShrink: 0 }}>
                 <a href={PADLET_URL} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src="/padlet-qr.png"
-                    alt="QR code for Padlet"
+                  <img src="/padlet-qr.png" alt="QR code for Padlet"
                     style={{ width: 130, height: 130, borderRadius: 8, border: '1.5px solid var(--border)', display: 'block', transition: 'transform 0.15s ease' }}
                     onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.03)')}
-                    onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}
-                  />
+                    onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')} />
                 </a>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--text-muted)', letterSpacing: '0.12em' }}>SCAN TO OPEN</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Preview image */}
+          <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)', boxShadow: 'var(--shadow-md)' }}>
+            <img src="/padlet-preview.png" alt="Mission Complete: Report Back to Gru — Padlet board" style={{ width: '100%', display: 'block' }} />
+          </div>
+
+          {/* How to add a note */}
+          <div className="space-y-4">
+            <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>HOW TO ADD A NOTE</p>
+            <div className="space-y-2">
+              <p className="text-xs font-mono font-bold" style={{ color: 'var(--yellow-text)' }}>OPTION 1 — USE THE + BUTTON IN A COLUMN</p>
+              <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
+                Click the <strong>+</strong> button at the top of any column to add your note directly to that section.
+              </p>
+              <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+                <img src="/padlet_plus_button.png" alt="Click the + button in a column to add a note" style={{ width: '100%', display: 'block' }} />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <p className="text-xs font-mono font-bold" style={{ color: 'var(--yellow-text)' }}>OPTION 2 — USE THE POST BUTTON</p>
+              <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
+                Click the pink <strong>+ Post</strong> button at the bottom right of the screen, then select which section you want to add your note to.
+              </p>
+              <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+                <img src="/padlet_post_button.png" alt="Click the Post button at bottom right and select a section" style={{ width: '100%', display: 'block' }} />
               </div>
             </div>
           </div>
