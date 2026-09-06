@@ -44,14 +44,12 @@ Built for a workshop, then rebuilt so any team can run it.
 Each level builds on the last. Levels 2 through 4 run in a single conversation, so by the
 end the Minion is working from everything the learner built along the way.
 
-
 ## What learners walk away with
 
 - A repeatable method for writing prompts that works with any AI tool
 - A working Claude Project loaded with their own instructions and data
 - A reusable Skill that produces a designed PowerPoint deck on demand
 - A live tool connection, and a real understanding of what an AI agent actually is
-
 
 ## Making it yours
 
@@ -75,7 +73,6 @@ becomes a workshop about your work instead of a heist.
 
 Progress is kept in the browser's `localStorage`, so there is no backend, no database, and
 no accounts to manage.
-
 
 ## Built with
 
