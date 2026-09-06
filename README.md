@@ -8,6 +8,10 @@
 
 Four levels. Seventy minutes. One ridiculous mission.
 
+### [→ Start the heist](https://1inminion.vercel.app/)
+
+<sub>Free to run. You'll need a Claude account — the paid plan (around $20/month) unlocks Projects, Skills, and Connectors.</sub>
+
 </div>
 
 ---
@@ -53,28 +57,10 @@ end the Minion is working from everything the learner built along the way.
 <br><em>Level 03 — a Skill is a method written down once, applied every time.</em>
 </div>
 
-## Running it yourself
-
-**What you need:** a Claude account. The paid plan (around $20/month) is required for
-Projects, Skills, and Connectors.
-
-```bash
-git clone https://github.com/Vanshaj5101/Claude_1inMINION.git
-cd Claude_1inMINION
-npm install
-npm run dev
-```
-
-Open http://localhost:3000.
-
-Progress is stored in the browser's `localStorage`, so there is no backend, no database,
-and no accounts to manage. Clear site data to reset, or open a private window to see it as
-a first-time visitor does.
-
 ## Making it yours
 
-All copy lives in `content/`, so you can rewrite the entire workshop without touching a
-component.
+Fork it and the whole workshop becomes yours. All copy lives in `content/`, so you can
+rewrite every level without touching a component.
 
 ```
 content/
@@ -90,6 +76,9 @@ public/files/
 
 Swap the CSV for your own data, rewrite the five mission questions, and the whole thing
 becomes a workshop about your work instead of a heist.
+
+Progress is kept in the browser's `localStorage`, so there is no backend, no database, and
+no accounts to manage.
 
 <div align="center">
 <img src="docs/level4-connector.png" alt="The Google Calendar connector in Claude" width="80%">
