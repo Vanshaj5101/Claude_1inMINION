@@ -30,6 +30,10 @@ Built for a workshop, then rebuilt so any team can run it.
 
 ## The four levels
 
+<div align="center">
+<img src="docs/levels.png" alt="The four levels: Talk to Your Minion, Arm Your Minion, Upgrade Your Minion, Give Minion the Wheel" width="100%">
+</div>
+
 | # | Level | Concept | What the learner does | Time |
 |---|-------|---------|----------------------|------|
 | 01 | Talk to Your Minion | **Prompt Engineering** | Runs a vague prompt, then builds a structured one a layer at a time — Task, Role, Context, Format, Constraints — and watches the answer improve at every step | 15 min |
@@ -40,10 +44,6 @@ Built for a workshop, then rebuilt so any team can run it.
 Each level builds on the last. Levels 2 through 4 run in a single conversation, so by the
 end the Minion is working from everything the learner built along the way.
 
-<div align="center">
-<img src="docs/level2-project.png" alt="A Claude Project with Instructions and Context" width="80%">
-<br><em>Level 02 — Instructions is who your Minion is. Context is what it knows.</em>
-</div>
 
 ## What learners walk away with
 
@@ -52,10 +52,6 @@ end the Minion is working from everything the learner built along the way.
 - A reusable Skill that produces a designed PowerPoint deck on demand
 - A live tool connection, and a real understanding of what an AI agent actually is
 
-<div align="center">
-<img src="docs/level3-skill.png" alt="An installed Skill in Claude" width="80%">
-<br><em>Level 03 — a Skill is a method written down once, applied every time.</em>
-</div>
 
 ## Making it yours
 
@@ -80,10 +76,6 @@ becomes a workshop about your work instead of a heist.
 Progress is kept in the browser's `localStorage`, so there is no backend, no database, and
 no accounts to manage.
 
-<div align="center">
-<img src="docs/level4-connector.png" alt="The Google Calendar connector in Claude" width="80%">
-<br><em>Level 04 — the point where it stops answering and starts doing.</em>
-</div>
 
 ## Built with
 
