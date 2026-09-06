@@ -281,10 +281,27 @@ Has a shimmer sweep animation on hover.
 - On landing/hero pages: transparent background, no border
 - On level pages: `var(--bg-primary)` background, 1px border-bottom, xs shadow
 - Logo: left-aligned, image-based (`1inMINION.png`)
-- Level progress track: centered, 4 circle nodes connected by lines
+- Level progress track: centered, 4 circle nodes connected by lines. Level pages only.
   - Current level: yellow border + light fill + minion avatar
   - Completed level: yellow border + flag icon
   - Locked level: gray border + lock icon
+- Connect menu: right-aligned, on every page
+
+### Connect Menu ("Meet the Human")
+
+A pill button in the top-right that opens a two-item dropdown (LinkedIn, Portfolio).
+Links live in `content/landing.ts` under `connect`, never hardcoded.
+
+- Pill: `border-radius: 999px`, `var(--yellow)` fill, 28px circular minion avatar on the
+  left, mono uppercase label, `ChevronDown` that rotates 180° when open
+- Label collapses to `HUMAN` below the `sm` breakpoint
+- Hover: `translateY(-2px) scale(1.03)` on a spring curve
+  (`cubic-bezier(0.34, 1.56, 0.64, 1)`)
+- Idle attention: `connectHalo` pulses the shadow, `connectNudge` bobs and tilts the avatar
+  every 5s. Both stop while the panel is open and are disabled under
+  `prefers-reduced-motion`
+- Panel: 220px min-width, 2px yellow top border, dark translucent + blur on the landing
+  page, solid `var(--bg-primary)` elsewhere
 
 ---
 
@@ -298,6 +315,9 @@ Has a shimmer sweep animation on hover.
 | Cursor blink | 7×13px yellow block, 1s step-end infinite |
 | Hero CTA shimmer | Linear gradient sweep on hover, 550ms ease |
 | Background blobs | `float-slow`: translateY ±20px, 9–13s infinite, staggered delays |
+| Final-step panel | `shadowPulse`: amber glow, 2.2s ease-in-out infinite |
+| Connect halo | `connectHalo`: shadow 0.40 → 0.75 alpha, 2.8s infinite |
+| Connect nudge | `connectNudge`: avatar bob + tilt in the last 12% of a 5s loop |
 | Nav circle hover | `box-shadow: 0 0 0 4px rgba(255,215,0,0.25)`, 200ms |
 
 **Reduced motion:** All animations respect `prefers-reduced-motion: reduce`. When set, blobs, cursor blink, and transitions are disabled.
@@ -344,10 +364,13 @@ CTA: hero-cta pill button (gradient, large)
 |------|-------|
 | `Clipboard` / `Check` | Prompt block copy button |
 | `CheckSquare` / `Square` | Step completion toggle |
-| `ChevronDown` / `ChevronUp` | Accordion expand/collapse |
+| `ChevronDown` | Connect menu open/close indicator |
 | `ExternalLink` | Link-out to claude.ai |
 | `ArrowRight` | CTA forward navigation |
-| `Lock` | Locked nav level node |
+| `Download` | File download cards (dataset, Skill file) |
+| `Linkedin` / `Globe` | Connect menu rows |
+| `ShieldCheck` | Level 04 permissions callout |
+| `X` / `Check` | Level 03 without/with comparison headers |
 
 Icon size convention: `11–12px` inline, `15–18px` interactive, `22px` hero CTA.
 
@@ -367,6 +390,14 @@ Icon size convention: `11–12px` inline, `15–18px` interactive, `22px` hero C
 ```
 
 Sections are separated by `space-y-16` (64px gap). Each section starts with a `section-eyebrow` badge followed by an `h2` in Bangers.
+
+**Mark-done placement.** Every completion toggle sits **bottom-right** of its card, inside a
+`flex justify-end` wrapper — never in a card header. Levels 3 and 4 use a local `MarkDone`
+component for this; Levels 1 and 2 inline the same markup.
+
+**Numbered steps.** Sub-steps inside a card use a 20px yellow circle with the step number,
+a mono bold title, body copy, and an optional screenshot beneath. Levels 2, 3, and 4 all
+follow this shape (`buildSteps`, `installSteps`, `connectSteps`).
 
 ---
 
