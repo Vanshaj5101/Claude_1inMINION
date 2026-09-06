@@ -3,13 +3,13 @@
     {
       "card": "01",
       "title": "Run the Vague Prompt",
-      "description": "Open ChatGPT. Copy and run this prompt. Read the output carefully - notice how generic and unfocused it is. This is your Minion with no guidance.",
+      "description": "Open Claude. Copy and run this prompt. Read the output carefully - notice how generic and unfocused it is. This is your Minion with no guidance.",
       "resource_id": "prompt-vague"
     },
     {
       "card": "02",
       "title": "Run the Structured Prompt",
-      "description": "Now copy and run this structured prompt in the same chat. Compare the two outputs side by side. Same ChatGPT. Different result.",
+      "description": "Now copy and run this structured prompt in the same chat. Compare the two outputs side by side. Same Claude. Different result.",
       "resource_id": "prompt-good"
     },
     {

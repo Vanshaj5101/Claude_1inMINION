@@ -4,24 +4,25 @@
     {
       "id": "prompt-check-schedule",
       "type": "prompt",
-      "label": "Check Schedule",
-      "instruction": "Start a new chat in ChatGPT. Copy and paste this prompt:",
-      "content": "What does my schedule look like tomorrow?\nList every event - title, time, and how long each one is."
+      "label": "Read My Schedule",
+      "instruction": "Go back to the chat where you built your presentation. Same chat, still. Ask it something it could not possibly have known five minutes ago. Claude will ask permission before it reads anything — approve it.",
+      "content": "What does my schedule look like tomorrow?\nList every event with its title, start time, and how long it runs.",
+      "note": "Those are your real meetings, read live from your calendar. Nothing was pasted in."
     },
     {
       "id": "prompt-find-slot",
       "type": "prompt",
       "label": "Find a Free Slot",
-      "instruction": "In the same chat, copy and paste this prompt:",
-      "content": "Look at my calendar for the next 2 weeks.\nIs there any 3-hour block where I am completely free?\nTell me the first one you find - date, day, and exact time."
+      "instruction": "Still the same chat. Now ask it something no chatbot could answer without access to your actual data.",
+      "content": "Look at my calendar for the next 2 weeks.\nFind the first 3-hour block where I am completely free.\nTell me the date, day, and exact time."
     },
     {
       "id": "prompt-send-invite",
       "type": "prompt",
       "label": "Send the Heist Invite",
-      "instruction": "Replace [PARTNER EMAIL] with your partner's actual email address. Copy and paste this prompt:",
-      "content": "Look at my calendar for the next 2 weeks.\nFind the first 3-hour slot where I am completely free.\n\nSchedule a meeting at that time with [PARTNER EMAIL].\n\nTitle: Operation: Steal the Sun - Mission Planning Session\nDuration: 3 hours\n\nSend them a calendar invite with this agenda:\n\n---\nHi,\n\nYou're being recruited for the most ambitious heist in history.\n\nWe are planning Operation: Steal the Sun. The data has been analysed.\nThe plan is ready. Now we need a crew.\n\nWhat the data told us:\n- Best time to go: [your answer from Q1]\n- Ship we're taking: [your answer from Q2]\n- Team size: [your answer from Q3]\n- Budget we need: [your answer from Q4]\n- Biggest risk - and how we avoid it: [your answer from Q5]\n\nOur secret weapon: [your special tool from Level 2]\n\nWhat we're deciding in this session:\n- Who does what on the team\n- How we present this to GRU\n- Final sign-off before execution day\n\nCome ready to commit.\n\n- [Your name], Chief Strategist, Gru Industries\n---\n\nConfirm once the invite is sent.",
-      "note": "Your Minion will read your calendar, find a free slot, create the invite, and send it - all from one instruction."
+      "instruction": "Replace [PARTNER EMAIL] with a real address. Notice how little you are telling it — no dates, no agenda, no copy. Your Minion has sat through this entire session and already knows the rest.",
+      "content": "Book that 3-hour slot and invite [PARTNER EMAIL].\n\nTitle it: Operation: Steal the Sun — Mission Planning Session\n\nWrite the invite description yourself using everything we worked out today — the mission, what the 374 records told us, our special tool, and what we need to decide in this session. Make it exciting enough that they actually turn up.\n\nThen tell me exactly what you did.",
+      "note": "Count what that took. It recalled the whole session, scanned two weeks of calendar, picked a slot, wrote the copy, created the event, and invited someone. You wrote three lines."
     }
   ]
 }

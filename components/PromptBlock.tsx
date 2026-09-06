@@ -108,7 +108,7 @@ export default function PromptBlock({ promptText, label, variant = 'core', subst
           }}
         >
           {state === 'copied'
-            ? <><Check size={11} /> COPIED! PASTE IN CHATGPT</>
+            ? <><Check size={11} /> COPIED! PASTE IN CLAUDE</>
             : state === 'error'
             ? 'COPY FAILED — SELECT MANUALLY'
             : <><Clipboard size={11} /> COPY</>

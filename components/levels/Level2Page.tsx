@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { Download, Copy, Check, CheckSquare, Square, ExternalLink, FileText } from 'lucide-react'
+import { Download, Copy, Check, CheckSquare, Square, ExternalLink } from 'lucide-react'
 import { motion } from 'framer-motion'
 import PromptBlock from '../PromptBlock'
 import MissionCheck from '../MissionCheck'
@@ -9,6 +9,7 @@ import LevelBriefingModal from '../LevelBriefingModal'
 import LevelBriefingSection from '../LevelBriefingSection'
 import LevelProgressCard from '../LevelProgressCard'
 import TableOfContents from '../TableOfContents'
+import { useMinionName } from '@/hooks/useMinionName'
 import briefingData from '@/content/levels/level2/level_02_briefing.json'
 import resourcesData from '@/content/levels/level2/level_02_resources.json'
 
@@ -18,12 +19,13 @@ const fadeUp = { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, 
 const res: Record<string, any> = Object.fromEntries(resourcesData.resources.map(r => [r.id, r]))
 
 export default function Level2Page() {
+  const { minionName } = useMinionName()
   const [showBriefing, setShowBriefing] = useState(true)
   const handleEnter = () => setShowBriefing(false)
 
-  // 10 checked items matching mission_check (0 created GPT, 1 name/desc/instructions,
-  // 2 uploaded data, 3-7 the five questions Q01-Q05, 8 special tool, 9 debrief)
-  const [checked, setChecked] = useState<boolean[]>(() => new Array(10).fill(false))
+  // 9 checked items matching mission_check (0 created Project, 1 instructions,
+  // 2 loaded data + tested memory, 3-7 the five questions Q01-Q05, 8 special tool)
+  const [checked, setChecked] = useState<boolean[]>(() => new Array(9).fill(false))
   const toggleCheck = useCallback((i: number) => {
     setChecked(prev => { const next = [...prev]; next[i] = !next[i]; return next })
   }, [])
@@ -38,25 +40,24 @@ export default function Level2Page() {
 
   const tocSections = [
     { id: 'overview',      label: 'Overview' },
-    { id: 'build',         label: 'Build Your GPT' },
-    { id: 'data',          label: 'Upload Mission Data' },
+    { id: 'build',         label: 'Build Your Project' },
     { id: 'questions',     label: '5 Mission Questions' },
     { id: 'special-tool',  label: 'Special Tool' },
-    { id: 'debrief',       label: 'Mission Debrief' },
     { id: 'mission-check', label: 'Mission Check' },
   ]
 
-  const gptName: string         = res['gpt-name'].content
-  const gptDescription: string  = res['gpt-description'].content
-  const gptInstructions: string = res['gpt-instructions'].content
+  const projectName: string         = res['project-name'].content
+  const projectDescription: string  = res['project-description'].content
+  const projectInstructions: string = res['project-instructions'].content
+  const meetPrompt                  = res['prompt-meet-minion'] as { instruction: string; content: string }
+  const memoryPrompt                = res['prompt-test-memory'] as { instruction: string; content: string; note: string }
   const missionData             = res['mission-data'] as { filename: string; description: string }
   const missionInstruction: string = res['mission-questions'].instruction
   const questions: Array<{ number: string; title: string; prompt: string }> = res['mission-questions'].questions
   const specialToolContent: string    = res['prompt-special-tool'].content
   const specialToolInstruction: string = res['prompt-special-tool'].instruction
-  const debriefContent: string       = res['prompt-create-txt'].content
-  const debriefInstruction: string   = res['prompt-create-txt'].instruction
-  const debriefNote: string          = res['prompt-create-txt'].note
+
+  const withMinion = (t: string) => t.replace(/\[MINION NAME\]/g, minionName)
 
   const CopyField = ({ id, value }: { id: string; value: string }) => (
     <div className="flex items-center gap-2">
@@ -78,16 +79,12 @@ export default function Level2Page() {
   )
 
   const buildSteps = [
-    { num: '01', title: 'Open Explore GPTs',       desc: 'Click GPTs in the left sidebar of ChatGPT, then click Explore GPTs.' },
-    { num: '02', title: 'Click + Create',           desc: 'Click the + Create button in the top right corner of the Explore GPTs page.' },
-    { num: '03', title: 'Switch to Configure',      desc: 'Click the Configure tab at the top of the GPT builder. Your screen should look like this.', field: 'configure' },
-    { num: '04', title: 'Upload GPT Image',         desc: 'Click the + circle at the top to upload a profile image for your GPT. Download and use the image below.', field: 'icon' },
-    { num: '05', title: 'Add Name',                 desc: 'Copy and paste the GPT name into the Name field.', field: 'name' },
-    { num: '06', title: 'Add Description',          desc: 'Copy and paste the description into the Description field.', field: 'description' },
-    { num: '07', title: 'Add Instructions',         desc: 'Copy the full GPT instructions and paste into the Instructions field.', field: 'instructions' },
-    { num: '08', title: 'Enable All Capabilities',  desc: 'Scroll down to Capabilities and check all 5 options — Web Search, Apps, Canvas, Image Generation, and Code Interpreter & Data Analysis.', field: 'capabilities' },
-    { num: '09', title: 'Share with Your Partner',  desc: 'Click the Share button and add your partner\'s email.', field: 'share' },
-    { num: '10', title: 'Hit Create',               desc: 'Click the Create button in the top right corner to save your GPT.', field: 'saved' },
+    { num: '01', title: 'Open Claude',   desc: 'Go to claude.ai and sign in to your account.' },
+    { num: '02', title: 'Go to Projects', desc: 'Click Projects in the left sidebar.' },
+    { num: '03', title: 'Create Your Project', desc: 'Click New Project. Claude asks you two questions in one dialog \u2014 fill both in, then click Create project.', field: 'create' },
+    { num: '04', title: 'Add Project Instructions', desc: 'In your new Project, hit the + next to Instructions, paste these in, and save. This is what turns a blank Project into your Minion.', field: 'instructions' },
+    { num: '05', title: 'Load the Mission Data', desc: 'Download the 374 mission records and add them to your Project\u2019s Context. You do this once and every chat in the Project can use it.', field: 'data' },
+    { num: '06', title: 'Meet Your Minion, Then Test the Memory', desc: 'Two chats. The first introduces your Minion. The second proves it never forgets.', field: 'meet' },
   ]
 
   return (
@@ -115,28 +112,28 @@ export default function Level2Page() {
           <div style={{ borderTop: '1px solid var(--border)' }} />
         </section>
 
-        {/* Build Your GPT */}
+        {/* Build Your Project */}
         <section id="build" className="space-y-6">
-          <p className="section-eyebrow">// BUILD YOUR CUSTOM GPT</p>
+          <p className="section-eyebrow">// BUILD YOUR PROJECT</p>
 
           <div
             className="rounded-lg p-5 flex flex-col gap-4 transition-all duration-300"
             style={{
               background: 'var(--bg-secondary)',
-              border: `1px solid ${checked[0] && checked[1] ? 'var(--green)' : 'var(--border)'}`,
+              border: `1px solid ${checked[0] && checked[1] && checked[2] ? 'var(--green)' : 'var(--border)'}`,
             }}
           >
             <div className="flex items-center justify-between gap-3">
               <h3 className="font-bold text-lg" style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}>
-                Follow these steps to build your Custom GPT
+                Follow these steps to build your Project
               </h3>
               <a
-                href="https://chatgpt.com/"
+                href="https://claude.ai/projects"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-secondary inline-flex flex-shrink-0"
               >
-                Open ChatGPT <ExternalLink size={13} />
+                Open Claude <ExternalLink size={13} />
               </a>
             </div>
 
@@ -151,91 +148,130 @@ export default function Level2Page() {
                       <p className="font-bold text-xs mb-0.5" style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-primary)' }}>{step.title}</p>
                       <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>{step.desc}</p>
                     </div>
-                    {step.field === 'icon' && (
-                      <div className="flex flex-col gap-2 pt-1">
-                        <div className="flex items-center gap-4">
-                          <div className="rounded-xl overflow-hidden flex-shrink-0" style={{ border: '1px solid var(--border)', width: 80, height: 80 }}>
-                            <img src="/level2_gpt_icon.png" alt="1inMINION Data Strategist GPT icon" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    {step.field === 'create' && (
+                      <div className="space-y-3 pt-1">
+                        <div className="space-y-1">
+                          <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>WHAT ARE YOU WORKING ON?</p>
+                          <CopyField id="project-name" value={withMinion(projectName)} />
+                        </div>
+                        <div className="space-y-1">
+                          <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>WHAT ARE YOU TRYING TO ACHIEVE?</p>
+                          <CopyField id="project-description" value={projectDescription} />
+                        </div>
+                        <div className="space-y-1">
+                          <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>THE DIALOG LOOKS LIKE THIS</p>
+                          <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+                            <img src="/level2_create_project.png" alt="Claude's Create a project dialog with the name and goal filled in" style={{ width: '100%', display: 'block' }} />
                           </div>
-                          <a
-                            href="/level2_gpt_icon.png"
-                            download="1inMINION_Data_Strategist_icon.png"
-                            className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-bold transition-all duration-150"
-                            style={{ background: 'var(--yellow)', color: 'var(--text-primary)', textDecoration: 'none' }}
-                          >
-                            <Download size={12} /> DOWNLOAD ICON
-                          </a>
                         </div>
-                        <p className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>
-                          The downloaded file will be available in your Downloads folder.
-                        </p>
+                        <div className="space-y-1">
+                          <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>YOUR NEW PROJECT LANDS HERE</p>
+                          <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+                            <img src="/level2_project_view.png" alt="A new empty Claude Project showing the Instructions and Context panels" style={{ width: '100%', display: 'block' }} />
+                          </div>
+                          <div className="rounded-lg p-4 space-y-2.5 mt-2" style={{ background: 'rgba(242,155,28,0.07)', border: '1px solid rgba(242,155,28,0.3)', borderLeft: '3px solid var(--yellow)' }}>
+                            <p className="font-mono font-bold text-xs" style={{ color: 'var(--yellow-text)', letterSpacing: '0.1em' }}>LOOK AT THE PANEL ON THE RIGHT</p>
+                            <div className="flex items-baseline gap-2">
+                              <span className="font-mono font-bold text-xs px-2 py-0.5 rounded flex-shrink-0" style={{ background: 'var(--yellow)', color: 'var(--text-primary)' }}>INSTRUCTIONS</span>
+                              <span className="text-xs" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>= <strong style={{ color: 'var(--text-primary)' }}>who</strong> your Minion is</span>
+                            </div>
+                            <div className="flex items-baseline gap-2">
+                              <span className="font-mono font-bold text-xs px-2 py-0.5 rounded flex-shrink-0" style={{ background: 'var(--yellow)', color: 'var(--text-primary)' }}>CONTEXT</span>
+                              <span className="text-xs" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>= <strong style={{ color: 'var(--text-primary)' }}>what</strong> it knows</span>
+                            </div>
+                            <p className="text-xs pt-0.5" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
+                              You fill in both, in that order. That is the whole level.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     )}
-                    {step.field === 'configure' && (
-                      <div className="space-y-1 pt-1">
-                        <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>THE CONFIGURE TAB LOOKS LIKE THIS</p>
-                        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
-                          <img src="/level2_gpt_configure_empty.png" alt="Empty GPT Configure tab showing Name, Description, and Instructions fields" style={{ width: '100%', display: 'block' }} />
-                        </div>
-                      </div>
-                    )}
-                    {step.field === 'name' && <CopyField id="gpt-name" value={gptName} />}
-                    {step.field === 'description' && <CopyField id="gpt-description" value={gptDescription} />}
                     {step.field === 'instructions' && (
                       <>
                         <div className="flex items-start gap-2">
                           <div className="flex-1 text-xs px-3 py-2 rounded-md font-mono leading-relaxed" style={{ background: 'var(--bg-code)', border: '1px solid var(--border)', color: 'var(--text-primary)', maxHeight: 120, overflowY: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
-                            {gptInstructions.slice(0, 180)}…
+                            {withMinion(projectInstructions).slice(0, 180)}…
                           </div>
                           <button
-                            onClick={() => copyValue('gpt-instructions', gptInstructions)}
+                            onClick={() => copyValue('project-instructions', withMinion(projectInstructions))}
                             className="flex-shrink-0 flex items-center gap-1 px-2 py-1.5 rounded-md text-xs font-mono font-bold transition-all duration-150"
                             style={{
-                              background: copiedId === 'gpt-instructions' ? 'rgba(5,150,105,0.1)' : 'var(--yellow)',
-                              color: copiedId === 'gpt-instructions' ? 'var(--green)' : 'var(--text-primary)',
-                              border: copiedId === 'gpt-instructions' ? '1px solid var(--green)' : 'none',
+                              background: copiedId === 'project-instructions' ? 'rgba(5,150,105,0.1)' : 'var(--yellow)',
+                              color: copiedId === 'project-instructions' ? 'var(--green)' : 'var(--text-primary)',
+                              border: copiedId === 'project-instructions' ? '1px solid var(--green)' : 'none',
                             }}
                           >
-                            {copiedId === 'gpt-instructions' ? <><Check size={11} /> COPIED</> : <><Copy size={11} /> COPY</>}
+                            {copiedId === 'project-instructions' ? <><Check size={11} /> COPIED</> : <><Copy size={11} /> COPY</>}
                           </button>
                         </div>
                         <div className="space-y-1 pt-1">
-                          <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>YOUR CONFIGURE SCREEN SHOULD LOOK LIKE THIS</p>
+                          <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>HIT THE + NEXT TO INSTRUCTIONS</p>
+                          <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)', maxWidth: 440 }}>
+                            <img src="/level2_edit_instructions.png" alt="The Edit instructions button beside the Instructions panel" style={{ width: '100%', display: 'block' }} />
+                          </div>
+                        </div>
+                        <div className="space-y-1 pt-1">
+                          <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>PASTE, THEN SAVE INSTRUCTIONS</p>
                           <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
-                            <img src="/level2_gpt_configure.png" alt="GPT Configure screen with name, description, and instructions filled in" style={{ width: '100%', display: 'block' }} />
+                            <img src="/level2_set_instructions.png" alt="The Set project instructions dialog with the Minion instructions pasted in" style={{ width: '100%', display: 'block' }} />
                           </div>
                         </div>
                       </>
                     )}
-                    {step.field === 'capabilities' && (
-                      <div className="space-y-1 pt-1">
-                        <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>CHECK ALL 5 CAPABILITIES</p>
-                        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)', maxWidth: 420 }}>
-                          <img src="/level2_gpt_capabilities.png" alt="All capabilities checked including Code Interpreter and Data Analysis" style={{ width: '100%', display: 'block' }} />
+                    {step.field === 'data' && (
+                      <div className="space-y-3 pt-1">
+                        <a
+                          href="/files/minion_mission_data.csv"
+                          download={missionData.filename}
+                          className="flex items-center gap-3 p-4 rounded-xl transition-all duration-150"
+                          style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border)', textDecoration: 'none' }}
+                          onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--yellow)' }}
+                          onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)' }}
+                        >
+                          <div className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'rgba(255,215,0,0.1)' }}>
+                            <Download size={18} style={{ color: 'var(--yellow)' }} />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="font-mono font-bold text-xs" style={{ color: 'var(--yellow-text)' }}>{missionData.filename}</p>
+                            <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>{missionData.description}</p>
+                          </div>
+                          <span className="font-mono text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0" style={{ background: 'var(--yellow)', color: 'var(--text-primary)' }}>
+                            DOWNLOAD
+                          </span>
+                        </a>
+                        <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
+                          Hit the <span className="font-mono font-bold" style={{ color: 'var(--text-primary)' }}>+</span> next to <span className="font-mono font-bold" style={{ color: 'var(--text-primary)' }}>Context</span> and add the file from your Downloads folder. Context belongs to the Project, not to one chat &mdash; that difference is the whole point of this level.
+                        </p>
+                        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)', maxWidth: 440 }}>
+                          <img src="/level2_add_files.png" alt="The Add files button beside the Context panel in a Claude Project" style={{ width: '100%', display: 'block' }} />
                         </div>
                       </div>
                     )}
-                    {step.field === 'share' && (
-                      <div className="space-y-2 pt-1">
-                        <div className="flex flex-wrap gap-2 p-3 rounded-lg" style={{ background: 'rgba(242,155,28,0.06)', border: '1px solid rgba(242,155,28,0.2)' }}>
-                          <span className="font-mono font-bold text-xs" style={{ color: 'var(--yellow-text)' }}>WHY THIS MATTERS:</span>
-                          <div className="flex flex-col gap-1">
-                            <span className="text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>→ Your partner can use the same GPT for their use case</span>
-                            <span className="text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>→ Encourages collaboration and consistency across the team</span>
-                            <span className="text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>→ Helps standardize a process</span>
+                    {step.field === 'meet' && (
+                      <div className="space-y-4 pt-1">
+                        <div className="space-y-2">
+                          <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>FIRST CHAT &mdash; MEET YOUR MINION</p>
+                          <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
+                            {meetPrompt.instruction}
+                          </p>
+                          <PromptBlock label="MEET YOUR MINION" promptText={meetPrompt.content} variant="core" substituteMinion={true} />
+                          <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+                            <img src="/level2_meet_minion.png" alt="A first chat in the Project with the mission data showing in Context" style={{ width: '100%', display: 'block' }} />
                           </div>
                         </div>
-                        <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>THE SHARE DIALOG LOOKS LIKE THIS</p>
-                        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)', maxWidth: 480 }}>
-                          <img src="/level2_gpt_share.png" alt="Share GPT dialog showing how to add people from your workspace" style={{ width: '100%', display: 'block' }} />
+                        <div className="space-y-2">
+                          <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>SECOND CHAT &mdash; TEST THE MEMORY</p>
+                          <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
+                            {memoryPrompt.instruction}
+                          </p>
+                          <PromptBlock label="TEST THE MEMORY" promptText={memoryPrompt.content} variant="test" substituteMinion={true} />
+                          <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+                            <img src="/level2_test_memory.png" alt="A brand new chat in the same Project, with the earlier chat listed under Recents" style={{ width: '100%', display: 'block' }} />
+                          </div>
                         </div>
-                      </div>
-                    )}
-                    {step.field === 'saved' && (
-                      <div className="space-y-1 pt-1">
-                        <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>CLICK VIEW GPT TO OPEN YOUR NEW GPT</p>
-                        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)', maxWidth: 480 }}>
-                          <img src="/level2_gpt_saved.png" alt="GPT Updated dialog showing 1inMINION Data Strategist with View GPT button" style={{ width: '100%', display: 'block' }} />
+                        <div className="rounded-lg p-4 flex items-start gap-3" style={{ background: 'rgba(242,155,28,0.1)', border: '1.5px solid rgba(242,155,28,0.45)' }}>
+                          <span className="text-lg flex-shrink-0">🧠</span>
+                          <p className="text-sm font-bold leading-relaxed" style={{ color: 'var(--yellow-text)', fontFamily: 'var(--font-body)' }}>{memoryPrompt.note}</p>
                         </div>
                       </div>
                     )}
@@ -246,91 +282,12 @@ export default function Level2Page() {
 
             <div className="flex justify-end">
               <button
-                onClick={() => { toggleCheck(0); toggleCheck(1) }}
+                onClick={() => { toggleCheck(0); toggleCheck(1); toggleCheck(2) }}
                 className="flex items-center gap-1.5 transition-all duration-150"
-                style={{ color: (checked[0] && checked[1]) ? 'var(--green)' : '#4B5563', fontFamily: 'var(--font-mono)', fontSize: 11, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                style={{ color: (checked[0] && checked[1] && checked[2]) ? 'var(--green)' : '#4B5563', fontFamily: 'var(--font-mono)', fontSize: 11, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
               >
-                {(checked[0] && checked[1]) ? <CheckSquare size={18} /> : <Square size={18} />}
-                <span className="hidden sm:inline">{(checked[0] && checked[1]) ? 'Done' : 'Mark done'}</span>
-              </button>
-            </div>
-
-          </div>
-        </section>
-
-        {/* Upload Mission Data */}
-        <section id="data" className="space-y-6">
-          <p className="section-eyebrow">// UPLOAD MISSION DATA</p>
-
-          <div
-            className="rounded-lg p-5 flex flex-col gap-4 transition-all duration-300"
-            style={{
-              background: 'var(--bg-secondary)',
-              border: `1px solid ${checked[2] ? 'var(--green)' : 'var(--border)'}`,
-            }}
-          >
-            <div className="flex flex-col gap-1">
-              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
-                Download the mission data file below, then upload it directly into your Custom GPT chat.
-              </p>
-              <p className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>
-                The downloaded file will be available in your Downloads folder.
-              </p>
-            </div>
-
-            <a
-              href="/files/minion_mission_data.csv"
-              download={missionData.filename}
-              className="flex items-center gap-4 p-5 rounded-xl transition-all duration-150"
-              style={{ background: 'var(--bg-primary)', border: '1px solid var(--border)', textDecoration: 'none' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--yellow)'; e.currentTarget.style.boxShadow = 'var(--shadow-sm)' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.boxShadow = 'none' }}
-            >
-              <div className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center" style={{ background: 'rgba(255,215,0,0.1)' }}>
-                <Download size={22} style={{ color: 'var(--yellow)' }} />
-              </div>
-              <div className="flex-1">
-                <p className="font-mono font-bold text-sm" style={{ color: 'var(--yellow-text)' }}>{missionData.filename}</p>
-                <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>{missionData.description}</p>
-              </div>
-              <span className="font-mono text-xs font-bold px-3 py-1.5 rounded-full flex-shrink-0" style={{ background: 'var(--yellow)', color: 'var(--text-primary)' }}>
-                DOWNLOAD
-              </span>
-            </a>
-
-            <div className="space-y-3 pt-1">
-              <div className="space-y-1">
-                <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>HOW TO UPLOAD THE FILE</p>
-                <p className="text-xs leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
-                  Click the <span className="font-mono font-bold" style={{ color: 'var(--text-primary)' }}>+</span> symbol on the chat screen, click <span className="font-mono font-bold" style={{ color: 'var(--text-primary)' }}>Add photos &amp; files</span>, then select the recently downloaded file from your Downloads folder.
-                </p>
-                <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
-                  <img src="/level2_upload_file.png" alt="Click + then Add photos and files to upload the mission data" style={{ width: '100%', display: 'block' }} />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <p className="font-mono text-xs font-bold tracking-widest" style={{ color: 'var(--text-muted)' }}>ONCE UPLOADED, SEND THIS PROMPT</p>
-                <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
-                  <img src="/level2_gpt_with_data.png" alt="1inMINION Data Strategist GPT with mission data uploaded and first prompt ready" style={{ width: '100%', display: 'block' }} />
-                </div>
-                <PromptBlock
-                  label="FIRST PROMPT — AFTER UPLOADING THE FILE"
-                  promptText="Here is the data. Take a look and tell me what we are working with."
-                  variant="core"
-                  substituteMinion={true}
-                />
-              </div>
-            </div>
-
-            <div className="flex justify-end">
-              <button
-                onClick={() => toggleCheck(2)}
-                className="flex items-center gap-1.5 transition-all duration-150"
-                style={{ color: checked[2] ? 'var(--green)' : '#4B5563', fontFamily: 'var(--font-mono)', fontSize: 11, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-              >
-                {checked[2] ? <CheckSquare size={18} /> : <Square size={18} />}
-                <span className="hidden sm:inline">{checked[2] ? 'Done' : 'Mark done'}</span>
+                {(checked[0] && checked[1] && checked[2]) ? <CheckSquare size={18} /> : <Square size={18} />}
+                <span className="hidden sm:inline">{(checked[0] && checked[1] && checked[2]) ? 'Done' : 'Mark done'}</span>
               </button>
             </div>
 
@@ -350,7 +307,7 @@ export default function Level2Page() {
 
             {/* Minion behaviour callout */}
             <div className="mt-4 rounded-lg p-4 space-y-2" style={{ background: 'rgba(242,155,28,0.06)', border: '1px solid rgba(242,155,28,0.25)' }}>
-              <span className="text-xs font-mono font-bold" style={{ color: 'var(--yellow-text)', letterSpacing: '0.08em' }}>EVERY TIME YOU ASK, CUSTOM GPT WILL:</span>
+              <span className="text-xs font-mono font-bold" style={{ color: 'var(--yellow-text)', letterSpacing: '0.08em' }}>EVERY TIME YOU ASK, YOUR MINION WILL:</span>
               <ul className="space-y-1">
                 {[
                   'Show the data in a table or chart so you can see it clearly',
@@ -391,7 +348,7 @@ export default function Level2Page() {
                   {qi < 3 && <PromptBlock label={`${number} - ${title.toUpperCase()}`} promptText={prompt} variant="core" substituteMinion={true} />}
                   {qi >= 3 && (
                     <p className="text-xs" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', fontStyle: 'italic' }}>
-                      // This one is yours — ask your GPT in your own words. You already know how.
+                      // This one is yours — ask your Minion in your own words. You already know how.
                     </p>
                   )}
                   <div className="flex justify-end">
@@ -426,41 +383,11 @@ export default function Level2Page() {
           </div>
         </section>
 
-        {/* Mission Debrief */}
-        <section id="debrief">
-          <div
-            className="rounded-xl overflow-hidden"
-            style={{ border: '2px solid var(--yellow)', boxShadow: '0 0 0 4px rgba(242,155,28,0.12), 0 8px 32px rgba(242,155,28,0.18)', animation: 'shadowPulse 2.2s ease-in-out infinite' }}
-          >
-            <div className="flex items-center justify-between px-5 py-4" style={{ background: 'var(--yellow)' }}>
-              <div className="flex items-center gap-3">
-                <FileText size={20} style={{ color: 'var(--text-primary)', flexShrink: 0 }} />
-                <div>
-                  <p className="font-mono font-bold text-xs tracking-widest" style={{ color: 'rgba(0,0,0,0.5)', letterSpacing: '0.16em' }}>// DO THIS BEFORE YOU LEAVE</p>
-                  <p className="font-bold text-lg leading-tight" style={{ fontFamily: 'var(--font-display)', color: 'var(--text-primary)' }}>Generate Your Mission Debrief File</p>
-                </div>
-              </div>
-              <button onClick={() => toggleCheck(9)} className="flex-shrink-0 flex items-center gap-1.5 transition-all duration-150" style={{ color: checked[9] ? 'var(--green)' : 'rgba(0,0,0,0.45)', fontFamily: 'var(--font-mono)', fontSize: 11, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-                {checked[9] ? <CheckSquare size={20} /> : <Square size={20} />}
-                <span className="hidden sm:inline font-bold">{checked[9] ? 'Done' : 'Mark done'}</span>
-              </button>
-            </div>
-            <div className="px-5 py-5 flex flex-col gap-4" style={{ background: 'var(--bg-warm)' }}>
-              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>{debriefInstruction}</p>
-              <PromptBlock label="MISSION DEBRIEF — COMPILE EVERYTHING" promptText={debriefContent} variant="final" substituteMinion={true} />
-              <div className="flex items-start gap-3 p-4 rounded-lg" style={{ background: 'rgba(242,155,28,0.12)', border: '1.5px solid rgba(242,155,28,0.5)' }}>
-                <span className="text-lg flex-shrink-0">💾</span>
-                <p className="text-sm font-bold leading-relaxed" style={{ color: 'var(--yellow-text)', fontFamily: 'var(--font-body)' }}>{debriefNote}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <div id="mission-check">
           <MissionCheck
             items={briefingData.mission_check}
             nextLevel="/level/3"
-            nextLabel="ADVANCE TO LEVEL 03: THE MISSION PLAN"
+            nextLabel="ADVANCE TO LEVEL 03: UPGRADE YOUR MINION"
             levelNumber={2}
             checked={checked}
             onToggle={toggleCheck}

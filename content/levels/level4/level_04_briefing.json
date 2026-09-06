@@ -2,51 +2,48 @@
   "level": {
     "number": "04",
     "title": "Give Minion the Wheel",
-    "eyebrow": "// LEVEL 04 - AGENTS + MCPs",
-    "concept": "Agents + MCPs",
+    "eyebrow": "// LEVEL 04 — MCPs",
+    "concept": "MCPs",
     "duration": "15 min",
-    "subdescription": "Until now you have been giving orders. Your Minion responds. You decide the next step. That changes now. Connect your Minion to your real calendar - and watch them take action in the real world without you lifting a finger."
+    "subdescription": "Until now you have been giving orders and your Minion has been answering. You still do every real thing yourself.\nThat changes here. Stay in the same chat, connect your Minion to your actual calendar, and give it one goal instead of a list of steps. Then watch it act in the real world."
   },
-
-  "mission_check": [
-    "Connected Google Calendar to ChatGPT",
-    "Minion read the calendar and found a free slot",
-    "Minion sent the heist planning invite"
-  ],
-
-  "what_are_mcps": "Until now, your Minion has been thinking inside ChatGPT. They can read data. They can answer questions. They can build pitch decks.\n\nBut they cannot touch anything outside.\n\nMCPs - Model Context Protocols - change that. An MCP is a connector. It lets ChatGPT reach into a real tool and take real action. Not just talk about it. Do it.\n\nToday you connect Google Calendar. Your Minion will read your schedule, find a free slot, book a meeting, and send an invite - all from one instruction.",
-
+  "what_are_mcps": "Everything your Minion has done so far happened inside the chat window. It can read your data. It can answer hard questions. It can build you a deck.\n\nBut it cannot touch anything outside.\n\nMCP — Model Context Protocol — is the open standard that changes that. It is a common language that lets Claude talk to real tools: your calendar, your drive, your ticketing system, your database. Connectors are the individual doors built on that standard, and you open them one at a time.\n\nToday you open one door. Your Minion will read your real schedule, find a genuinely free slot, write the invite, and send it. You give the goal. It works out the steps.",
   "mission_targets": [
-    "Connect ChatGPT to your Google Calendar using a Connector",
-    "Watch your Minion read your real calendar data",
-    "Give your Minion a goal and let them figure out the rest",
-    "Send a real calendar invite to your partner - your Minion does it for you"
+    "Connect Google Calendar to Claude as a Connector",
+    "Watch your Minion read your real schedule rather than guessing",
+    "Give it a goal, not a set of steps, and let it work out the sequence",
+    "Send a real invite carrying everything you built across all four levels"
   ],
-
   "mission_gear": [
-    {
-      "id": "connectors",
-      "name": "Connectors",
-      "definition": "Connectors let ChatGPT reach outside the chat and take real action inside tools you already use - like your calendar, drive, or email.",
-      "theme_translation": "Until now your Minion has been thinking inside the lair. Connectors give them legs. They can now walk out of the lair and do things in the real world - book meetings, read your schedule, send invites - without you doing it yourself.",
-      "why_useful": [
-        "ChatGPT stops being a chat tool and becomes a doing tool",
-        "One instruction - ChatGPT figures out the steps",
-        "Works with tools you already use every day",
-        "This is what people mean when they say AI agents"
-      ]
-    },
     {
       "id": "mcps",
       "name": "MCPs",
-      "definition": "MCP stands for Model Context Protocol - the technology standard that lets ChatGPT connect to external tools and take actions beyond the conversation.",
-      "theme_translation": "Think of MCP as the secret tunnel from Gru's Lair to the outside world. Connectors are the doors built on top of that tunnel. You do not need to understand the tunnel - just open the door.",
+      "definition": "Model Context Protocol is an open standard for connecting AI assistants to the tools and data where your work actually lives.",
+      "theme_translation": "Think of MCP as the secret tunnel out of Gru's lair. You do not need to understand how the tunnel was dug. You just need to know it means your Minion can finally leave the building.",
       "why_useful": [
-        "It is what powers Connectors under the hood",
-        "Any tool with an MCP can connect to ChatGPT",
-        "The ecosystem is growing - new tools connecting every month",
-        "This is the future of how AI works inside real workflows"
+        "Claude stops being a place you ask things and becomes a place things get done",
+        "One standard, so any tool that supports it can plug in",
+        "Your Minion works from live data, not a copy you pasted in",
+        "New tools join the ecosystem constantly"
+      ]
+    },
+    {
+      "id": "connectors",
+      "name": "Connectors",
+      "definition": "The individual integrations built on MCP. Each one gives Claude permission to read from, and act inside, one specific tool you already use.",
+      "theme_translation": "If MCP is the tunnel, a Connector is a door with your name on it. You choose which doors to open, and you can close any of them whenever you want.",
+      "why_useful": [
+        "Connect once and every future chat can use it",
+        "You control exactly which tools it can reach",
+        "Removes the copy-paste step between AI and your real work",
+        "This is what people actually mean by an AI agent"
       ]
     }
+  ],
+  "mission_check": [
+    "Connected Google Calendar to Claude",
+    "My Minion read my real schedule and listed my events",
+    "My Minion found a genuinely free slot in my calendar",
+    "My Minion wrote and sent the invite from one instruction"
   ]
 }

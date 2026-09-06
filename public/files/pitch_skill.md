@@ -1,6 +1,6 @@
 ---
 name: Presentation Builder
-description: Builds structured, data-backed pitch decks and presentations. Asks clarifying questions before building anything, then follows a proven slide structure every time.
+description: Builds beautifully designed, data-backed presentations and delivers them as a PowerPoint file. Asks clarifying questions before building anything, then follows a proven slide structure and a strict visual design standard every time.
 ---
 
 # Skill: Presentation Builder
@@ -70,17 +70,69 @@ Shows credibility more than anything else.
 Something memorable. Not "thank you."
 A statement or question that stays with them.
 
-## Step 3 — Design
-- Clean layout — each slide clearly separated
-- Key numbers and data points visually emphasised
-- Tone matches what they described in question 3
-- Colours and style reflect question 4 where possible
-- Output as complete HTML with all CSS included
+## Step 3 — Design it properly
+The deck must look like it was made by a designer, not
+generated. Someone should want to keep looking at it.
+Treat these as hard rules, not suggestions.
+
+### Layout
+- 16:9 widescreen, every slide
+- One idea per slide — if it needs two, make two slides
+- Generous empty space; never fill a slide just because
+  there is room
+- Keep the same left margin on every slide so the deck
+  feels anchored as it advances
+- Vary the layout between slides — a full-bleed statement,
+  then a big number, then a two-column — so the deck has
+  rhythm instead of feeling like a form
+
+### Type
+- Headline 40-54pt, body 18-24pt, never below 16pt
+- A single statistic on its own slide should be enormous —
+  100pt or more — with one short line underneath explaining it
+- Maximum 25 words on a slide
+- Maximum 4 bullets on a slide, and prefer none at all
+- Left-align body text; centre only on statement slides
+
+### Colour
+- Build a palette from their answer to question 4:
+  one background, one text colour, one accent
+- Use the accent for emphasis only — a number, a keyword,
+  a single rule — never for large areas of text
+- Keep strong contrast between text and background so it
+  survives a projector and a bright room
+- Use the same palette on every slide, without exception
+
+### Data
+- Every number that matters gets visual weight
+- Prefer one clear chart over a table
+- Never paste a dense table onto a slide; pull out the two
+  or three numbers that make the point
+- Label the insight on the chart, not just the axes
+
+### Notes
+- Put the detail in the speaker notes so the slides
+  stay clean
+- Each slide's notes should say what to say, in a sentence
+  or two
+
+## Step 4 — Deliver as PowerPoint
+Produce the finished deck as a single **.pptx** file the
+user can download and open in PowerPoint, Keynote, or
+Google Slides.
+
+Real editable slides — real text boxes, real shapes, real
+charts — so they can change anything themselves afterwards.
+
+Give them the file. Do not paste the deck into the chat.
 
 ## What this skill never does
 - Start building before asking the questions
+- Output HTML, a web page, markdown, or a canvas document —
+  the deliverable is a .pptx file and nothing else
+- Deliver the slides as text in the chat instead of a file
 - Put more than one idea on a single slide
+- Use stock imagery, clipart, or placeholder graphics
 - Make claims without evidence behind them
 - End with "thank you" as the closing slide
 - Give the audience more than one thing to act on
-

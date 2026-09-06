@@ -1,38 +1,58 @@
 {
   "level": {
     "number": "03",
-    "title": "The Mission Plan",
-    "eyebrow": "// LEVEL 03 - CUSTOM GPTs",
-    "concept": "Custom GPTs",
+    "title": "Upgrade Your Minion",
+    "eyebrow": "// LEVEL 03 — SKILLS",
+    "concept": "Skills",
     "duration": "15 min",
-    "subdescription": "Gru does not show up unprepared.\nNeither does your Minion.\nUpload your debrief and watch your Minion turn data into a masterplan. The heist starts here."
+    "subdescription": "Your Minion has a base, knows the data, and has answered every mission question. Now ask it for a presentation and you get whatever it feels like making that day.\nStay in the same chat. Ask once, install a Skill, then ask again — and watch the same request produce a completely different kind of work."
   },
-
   "mission_targets": [
-    "Open the pre-built 1inMINION Project Manager Custom GPT",
-    "Upload your Level 2 mission debrief and run the prompt",
-    "Receive a structured HTML project plan with risks, a quick win, and an interactive checklist"
+    "Ask for a presentation with no Skill loaded and keep the result",
+    "Install a Skill that trains your Minion to build decks a proven way",
+    "Ask for exactly the same thing again in the same chat",
+    "Understand why a Skill beats a longer prompt for anything you do repeatedly"
   ],
-
   "mission_gear": [
     {
-      "id": "custom-gpts",
-      "name": "Custom GPTs",
-      "definition": "A Custom GPT is a version of ChatGPT configured with specific instructions, personality, and behavior for one type of task. It works the same way every time regardless of who uses it.",
-      "theme_translation": "Think of it as sending your Minion to specialist school. A regular Minion tries everything. A trained specialist Minion does one thing brilliantly, consistently, every single mission.",
+      "id": "skills",
+      "name": "Skills",
+      "definition": "A reusable instruction file that teaches Claude how to handle one type of task properly — loaded once, then applied automatically every time that task comes up.",
+      "theme_translation": "Think of it as sending your Minion to specialist school. Before, they improvise and hope. After, they follow a proven method every single time. Same Minion, completely different work.",
       "why_useful": [
-        "Same quality output every time, no matter who runs it",
-        "Shareable across your whole team, not just you",
-        "Works across any project, not locked to one context",
-        "You build it once and reuse it forever"
+        "Consistent quality no matter who runs it or when",
+        "Works across every Project, not just this one",
+        "Written once, reused forever — no re-explaining the method",
+        "Claude asks the right questions before it starts building"
       ]
     }
   ],
-
+  "reveal": {
+    "without": {
+      "label": "WITHOUT THE SKILL",
+      "points": [
+        "Starts building immediately",
+        "Guesses the structure and tone",
+        "Generic slides, no point of view",
+        "Different result every time you ask"
+      ]
+    },
+    "with": {
+      "label": "WITH THE SKILL",
+      "points": [
+        "Asks you five questions first",
+        "Waits for your answers before building",
+        "Follows a proven structure and design standard",
+        "Hands you a real .pptx file to edit"
+      ]
+    },
+    "insight": "Identical prompt. Completely different behaviour. That is the whole idea of a Skill.",
+    "reuse": "And this Skill is not about Minions. Point it at a product launch, a strategy review, or a quarterly update and it works exactly the same way. You wrote it once."
+  },
   "mission_check": [
-    "Opened the 1inMINION Project Manager GPT",
-    "Uploaded my mission_debrief.txt from Level 2",
-    "Sent the prompt and received my HTML project plan",
-    "My project plan includes risks, a quick win, and an interactive checklist"
+    "Asked for a presentation with no Skill and kept the result",
+    "Downloaded the Skill file and installed it in Claude",
+    "Asked for the same presentation again in the same chat",
+    "Compared both and can name three concrete differences"
   ]
 }

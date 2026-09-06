@@ -5,7 +5,7 @@
       "id": "prompt-vague",
       "type": "prompt",
       "label": "The Vague Prompt",
-      "instruction": "Open ChatGPT in a new tab. Copy and paste this prompt and run it. Read the output.",
+      "instruction": "Open Claude in a new tab. Copy and paste this prompt and run it. Read the output.",
       "content": "Why did the moon mission fail?",
       "note": "Notice how generic and unfocused the response is. This is your Minion with no guidance."
     },
@@ -48,109 +48,78 @@
       "id": "concept-l0",
       "type": "concept",
       "label": "L0 - Raw Ask",
-      "concept_intro": "Type whatever comes to mind. No structure. No awareness. Pure instinct. You will always start here, even if briefly. The output is vague, generic, and barely usable - and that is precisely the point.",
+      "concept_intro": "Everyone starts here. You type the question the way you would say it out loud - no structure, no thought about the answer you actually want. Run it once so you have something to measure against. Every layer from here earns its place by beating this.",
       "added_highlight": null,
       "try_prompt": {
-        "instruction": "Open a new chat. Run this as your starting point. This is your baseline.",
-        "instruction_highlight": "Open a new chat.",
+        "instruction": "Open a new chat and run this. This is your baseline.",
+        "instruction_highlight": "This is your baseline.",
         "content": "How do I steal the sun?",
         "what_changed": null
       }
     },
     {
-      "id": "concept-specificity",
+      "id": "concept-task",
       "type": "concept",
-      "label": "L1 - Specificity",
-      "concept_intro": "Replace vague words with precise ones. Add numbers. Name the exact target and timeline. Non-negotiable for any real mission.",
-      "added_highlight": null,
+      "label": "L1 - Task",
+      "concept_intro": "A vague question gets a vague answer. Say exactly what you want back: how many, of what, by when. This one change usually does more for output quality than anything else on this page.",
+      "added_highlight": "Give me 3 plans for Operation: Steal the Sun, executed within 6 months.",
       "try_prompt": {
-        "instruction": "Add numbers and exact targets. Run it and compare to L0.",
+        "instruction": "Replace the question with a precise ask. Run it and compare to L0.",
+        "instruction_highlight": "compare to L0",
         "content": "Give me 3 plans for Operation: Steal the Sun, executed within 6 months.",
-        "what_changed": "Added: exact number (5), named the mission, set a timeline (6 months)"
+        "what_changed": "A vague question became a specific deliverable: how many plans (3), which mission, and the deadline (6 months)."
       }
     },
     {
       "id": "concept-role",
       "type": "concept",
       "label": "L2 - Role",
-      "concept_intro": "Assign the AI an expert identity before the task. The role changes how it thinks, not just what it says. A mission strategist reasons very differently from a helpful assistant.",
+      "concept_intro": "Tell Claude who to be before you tell it what to do. A role changes which knowledge it reaches for and what it treats as obvious. A strategist and a helpful assistant answer the same question very differently.",
       "added_highlight": "You are a veteran super-villain strategist with 30 years of audacious-heist experience and a working knowledge of orbital mechanics. You design theatrical but technically achievable plans, in the spirit of the Moon Heist (2010).",
       "try_prompt": {
-        "instruction": "Add the role before your ask. Run it and compare to L1.",
+        "instruction": "Add the role above your ask. Run it and compare to L1.",
+        "instruction_highlight": "compare to L1",
         "content": "You are a veteran super-villain strategist with 30 years of audacious-heist experience and a working knowledge of orbital mechanics. You design theatrical but technically achievable plans, in the spirit of the Moon Heist (2010).\n\nGive me 3 plans for Operation: Steal the Sun, executed within 6 months.",
-        "what_changed": "Added: expert role with specific background and reference to the Moon Heist"
+        "what_changed": "Added an expert identity with real specifics - years of experience, orbital mechanics, a signature style. Vague roles like 'you are an expert' change nothing."
       }
     },
     {
       "id": "concept-context",
       "type": "concept",
       "label": "L3 - Context",
-      "concept_intro": "Tell the AI about your world - your team, your constraints, your history, what has been tried and failed. This is the single biggest upgrade from generic output to something that knows your situation.",
+      "concept_intro": "Claude knows a great deal about the world and nothing at all about yours. Your team, your limits, your history, what already failed. This is the layer that turns a good generic answer into one written for your actual situation.",
       "added_highlight": "I am Chief Strategist of 1inMINION. I run a lab with 400 Minions - enthusiastic but easily distracted by bananas. The Anti-Villain League is watching. In 2010 I stole the Moon but returned it for my daughters. Vector is racing me to the Sun. The Sun is 5,500 degrees C - handling protocols matter. Any plan must be quiet, school-night-friendly, and conclude before bedtime.",
       "try_prompt": {
-        "instruction": "Add context about your world. Run it and compare to L2.",
-        "content": "You are a veteran super-villain strategist with 30 years of audacious-heist experience.\n\nI am Chief Strategist of 1inMINION. I run a lab with 400 Minions - enthusiastic but easily distracted by bananas. The Anti-Villain League is watching. In 2010 I stole the Moon but returned it for my daughters. Vector is racing me to the Sun. The Sun is 5,500 degrees C - handling protocols matter. Any plan must be quiet, school-night-friendly, and conclude before bedtime.\n\nGive me 3 plans for Operation: Steal the Sun, executed within 6 months.",
-        "what_changed": "Added: who we are, what has failed before, who is competing, real operational constraints"
+        "instruction": "Add the background about your world. Run it and compare to L2.",
+        "instruction_highlight": "compare to L2",
+        "content": "You are a veteran super-villain strategist with 30 years of audacious-heist experience and a working knowledge of orbital mechanics. You design theatrical but technically achievable plans, in the spirit of the Moon Heist (2010).\n\nI am Chief Strategist of 1inMINION. I run a lab with 400 Minions - enthusiastic but easily distracted by bananas. The Anti-Villain League is watching. In 2010 I stole the Moon but returned it for my daughters. Vector is racing me to the Sun. The Sun is 5,500 degrees C - handling protocols matter. Any plan must be quiet, school-night-friendly, and conclude before bedtime.\n\nGive me 3 plans for Operation: Steal the Sun, executed within 6 months.",
+        "what_changed": "Added who we are, what we tried before, who is competing, and the physical limits we cannot argue with. The plans now answer for this lab, not any lab."
       }
     },
     {
       "id": "concept-format",
       "type": "concept",
       "label": "L4 - Output Format",
-      "concept_intro": "Specify exactly how the answer should look. Format must match how the output will actually be used. A great plan in the wrong format is still unusable.",
+      "concept_intro": "Decide what the answer should look like before you ask for it. A brilliant plan buried in six paragraphs is still work you have to do yourself. Shape the output around how you will actually use it.",
       "added_highlight": "Format as a table with columns: Plan Name | Capture Method | Minion Count Needed | Difficulty (1-5) | Estimated Time | Daughter-Approved? Add a one-line why this could work under each row.",
       "try_prompt": {
         "instruction": "Add your format instruction. Run it and compare to L3.",
-        "content": "You are a veteran super-villain strategist with 30 years of audacious-heist experience.\n\nI am Chief Strategist of 1inMINION. I run a lab with 400 Minions - enthusiastic but easily distracted by bananas. The Anti-Villain League is watching. In 2010 I stole the Moon but returned it for my daughters. Vector is racing me to the Sun. Any plan must be quiet, school-night-friendly, and conclude before bedtime.\n\nGive me 3 plans for Operation: Steal the Sun, executed within 6 months.\n\nFormat as a table with columns: Plan Name | Capture Method | Minion Count Needed | Difficulty (1-5) | Estimated Time | Daughter-Approved? Add a one-line why this could work under each row.",
-        "what_changed": "Added: exact output structure - a table with specific columns and row annotations"
+        "instruction_highlight": "compare to L3",
+        "content": "You are a veteran super-villain strategist with 30 years of audacious-heist experience and a working knowledge of orbital mechanics. You design theatrical but technically achievable plans, in the spirit of the Moon Heist (2010).\n\nI am Chief Strategist of 1inMINION. I run a lab with 400 Minions - enthusiastic but easily distracted by bananas. The Anti-Villain League is watching. In 2010 I stole the Moon but returned it for my daughters. Vector is racing me to the Sun. The Sun is 5,500 degrees C - handling protocols matter. Any plan must be quiet, school-night-friendly, and conclude before bedtime.\n\nGive me 3 plans for Operation: Steal the Sun, executed within 6 months.\n\nFormat as a table with columns: Plan Name | Capture Method | Minion Count Needed | Difficulty (1-5) | Estimated Time | Daughter-Approved? Add a one-line why this could work under each row.",
+        "what_changed": "Named the exact structure - a table, the specific columns, and a one-line justification per row. The answer is now scannable and comparable."
       }
     },
     {
       "id": "concept-constraints",
       "type": "concept",
       "label": "L5 - Constraints",
-      "concept_intro": "Explicit rules - what to include, what to avoid, what to prioritize. Good prompting is about saying NO as much as saying YES. Especially when yes could scorch a continent.",
-      "added_highlight": "Constraints:\n- Total budget under 50M\n- Completable within 6 months\n- No permanent damage to Earth - daughters live here\n- No weaponized freeze rays - AVL is monitoring those\n- Average global temperature drop must stay under 2 degrees during the operation\n- Each plan description must be under 40 words\n- Tone: professional villain memo, not cartoonish",
+      "concept_intro": "The rules the answer has to live inside: budget, tone, length, what is off the table. Good prompting is as much about saying no as saying yes. Constraints are what separate an interesting idea from one you can actually act on.",
+      "added_highlight": "Constraints:\n- Total budget under 50M\n- No permanent damage to Earth - my daughters live here\n- No weaponized freeze rays - the AVL is monitoring those\n- Global average temperature must not drop more than 2 degrees during the operation\n- Keep each plan description under 40 words\n- Tone: professional villain memo, not cartoonish",
       "try_prompt": {
-        "instruction": "Add your constraints. Run it and compare to L4. This is your complete structured prompt.",
-        "content": "You are a veteran super-villain strategist with 30 years of audacious-heist experience.\n\nI am Chief Strategist of 1inMINION. I run a lab with 400 Minions - enthusiastic but easily distracted by bananas. The Anti-Villain League is watching. In 2010 I stole the Moon but returned it for my daughters. Vector is racing me to the Sun. Any plan must be quiet, school-night-friendly, and conclude before bedtime.\n\nGive me 3 plans for Operation: Steal the Sun, executed within 6 months.\n\nFormat as a table with columns: Plan Name | Capture Method | Minion Count Needed | Difficulty (1-5) | Estimated Time | Daughter-Approved? Add a one-line why this could work under each row.\n\nConstraints:\n- Total budget under 50M\n- Completable within 6 months\n- No permanent damage to Earth - daughters live here\n- No weaponized freeze rays - AVL is monitoring those\n- Average global temperature drop must stay under 2 degrees during the operation\n- Each plan description must be under 40 words\n- Tone: professional villain memo, not cartoonish",
-        "what_changed": "Added: budget cap, timeline, safety rules, word limit, tone - everything that turns a good idea into a shippable plan"
-      }
-    },
-    {
-      "id": "advanced-few-shot",
-      "type": "advanced",
-      "label": "L6 - Few-Shot Examples",
-      "concept_intro": "Show the AI what a great output looks like before asking for one. It calibrates to your standard, not its own default. Most powerful once you know what good looks like.",
-      "added_highlight": "Here is a plan I consider gold-standard:\n\nThe Moon Heist (GRU, 2010): Stole the actual Moon using a shrink ray. Theatrical, symbolic, technically dazzling, reversible - returned it for my daughters. The plan worked because it was iconic, had emotional stakes, had a clean exit, and made a great story afterward.\n\nNow give me 3 more Sun-heist plans at that quality level.",
-      "try_prompt": {
-        "instruction": "Add a gold-standard example before your ask. Run it and see how the quality shifts.",
-        "content": "You are a veteran super-villain strategist with 30 years of audacious-heist experience.\n\nI am Chief Strategist of 1inMINION. 400 Minions, AVL watching, Vector racing, daughters at home, Sun is 5,500 degrees C.\n\nGive me 3 plans for Operation: Steal the Sun.\n\nFormat as a table with columns: Plan Name | Capture Method | Minion Count Needed | Difficulty (1-5) | Estimated Time | Daughter-Approved? Add a one-line why this could work under each row.\n\nConstraints: budget under 50M, 6-month window, no permanent Earth damage, no freeze rays, global temperature drop under 2 degrees, each plan under 40 words, professional villain memo tone.\n\nHere is a plan I consider gold-standard:\n\nThe Moon Heist (GRU, 2010): Stole the actual Moon using a shrink ray. Theatrical, symbolic, technically dazzling, reversible - returned it for my daughters. The plan worked because it was iconic, had emotional stakes, had a clean exit, and made a great story afterward.\n\nNow give me 3 more Sun-heist plans at that quality level.",
-        "what_changed": "Added: a concrete example of what great looks like - the AI now calibrates to that standard"
-      }
-    },
-    {
-      "id": "advanced-chain-of-thought",
-      "type": "advanced",
-      "label": "L7 - Chain of Thought",
-      "concept_intro": "Ask the AI to reason through the problem before answering. Separating thinking from responding unlocks dramatically deeper and more coherent outputs.",
-      "added_highlight": "Before giving me the 3 Sun-heist plans, first reason through:\n1. What made the Moon Heist succeed and what made it feel hollow afterward?\n2. What patterns is the AVL looking for since 2010?\n3. What emotional payoff am I actually optimizing for now that I have three daughters?\n\nThen with that reasoning visible, give me 3 plans for Operation: Steal the Sun.",
-      "try_prompt": {
-        "instruction": "Ask the AI to think first, then answer. Run it and notice how the reasoning shapes the response.",
-        "content": "You are a veteran super-villain strategist with 30 years of audacious-heist experience.\n\nI am Chief Strategist of 1inMINION. 400 Minions, AVL watching, Vector racing, daughters at home, Sun is 5,500 degrees C.\n\nBefore giving me the 3 Sun-heist plans, first reason through:\n1. What made the Moon Heist succeed and what made it feel hollow afterward?\n2. What patterns is the AVL looking for since 2010?\n3. What emotional payoff am I actually optimizing for now that I have three daughters?\n\nThen with that reasoning visible, give me 3 plans for Operation: Steal the Sun.\n\nFormat as a table: Plan Name | Capture Method | Minion Count | Difficulty (1-5) | Time | Daughter-Approved?\n\nConstraints: budget under 50M, 6 months, no permanent Earth damage, temp drop under 2 degrees, each plan under 40 words, professional villain memo tone.",
-        "what_changed": "Added: explicit reasoning step before the answer - forces structured thinking before responding"
-      }
-    },
-    {
-      "id": "advanced-self-critique",
-      "type": "advanced",
-      "label": "L8 - Self-Critique",
-      "concept_intro": "Ask the AI to evaluate its own output against specific criteria before delivering it. You get a reviewed answer, not a first draft.",
-      "added_highlight": "After giving the 3 plans:\n- Score each on: iconic-ness, reversibility, AVL detection risk, daughter-approval probability\n- Identify the weakest plan\n- Replace it with a stronger one\n- Briefly explain what made the replacement better",
-      "try_prompt": {
-        "instruction": "Ask the AI to grade and fix its own answer. Run it and compare the quality.",
-        "content": "You are a veteran super-villain strategist with 30 years of audacious-heist experience.\n\nI am Chief Strategist of 1inMINION. 400 Minions, AVL watching, Vector racing, daughters at home, Sun is 5,500 degrees C.\n\nGive me 3 plans for Operation: Steal the Sun.\n\nFormat as a table: Plan Name | Capture Method | Minion Count | Difficulty (1-5) | Time | Daughter-Approved?\n\nConstraints: budget under 50M, 6 months, no permanent Earth damage, temp drop under 2 degrees, each plan under 40 words, professional villain memo tone.\n\nAfter giving the 3 plans:\n- Score each on: iconic-ness, reversibility, AVL detection risk, daughter-approval probability\n- Identify the weakest plan\n- Replace it with a stronger one\n- Briefly explain what made the replacement better",
-        "what_changed": "Added: scoring criteria, instruction to find the weakest and replace it - the AI does QA on itself"
+        "instruction": "Add your constraints. Run it and compare to L4. This is your complete prompt.",
+        "instruction_highlight": "This is your complete prompt.",
+        "content": "You are a veteran super-villain strategist with 30 years of audacious-heist experience and a working knowledge of orbital mechanics. You design theatrical but technically achievable plans, in the spirit of the Moon Heist (2010).\n\nI am Chief Strategist of 1inMINION. I run a lab with 400 Minions - enthusiastic but easily distracted by bananas. The Anti-Villain League is watching. In 2010 I stole the Moon but returned it for my daughters. Vector is racing me to the Sun. The Sun is 5,500 degrees C - handling protocols matter. Any plan must be quiet, school-night-friendly, and conclude before bedtime.\n\nGive me 3 plans for Operation: Steal the Sun, executed within 6 months.\n\nFormat as a table with columns: Plan Name | Capture Method | Minion Count Needed | Difficulty (1-5) | Estimated Time | Daughter-Approved? Add a one-line why this could work under each row.\n\nConstraints:\n- Total budget under 50M\n- No permanent damage to Earth - my daughters live here\n- No weaponized freeze rays - the AVL is monitoring those\n- Global average temperature must not drop more than 2 degrees during the operation\n- Keep each plan description under 40 words\n- Tone: professional villain memo, not cartoonish",
+        "what_changed": "Added budget, safety limits, word count, and tone. Same five layers you saw dissected in Part 01 - built one at a time, by you."
       }
     }
   ]

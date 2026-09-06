@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Bangers, Nunito, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Navigation from '@/components/Navigation'
-import StickyChatGPTButton from '@/components/StickyChatGPTButton'
+import StickyClaudeButton from '@/components/StickyClaudeButton'
 
 const bangers = Bangers({
   weight: '400',
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Navigation />
         {children}
-        <StickyChatGPTButton />
+        <StickyClaudeButton />
       </body>
     </html>
   )

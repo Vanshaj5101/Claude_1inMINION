@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { ExternalLink, ChevronDown, ChevronUp, CheckSquare, Square } from 'lucide-react'
+import { ExternalLink, CheckSquare, Square } from 'lucide-react'
 import { motion } from 'framer-motion'
 import PromptBlock from '../PromptBlock'
 import StepCard from '../StepCard'
@@ -27,7 +27,6 @@ export default function Level1Page() {
   // checked[1]: StepCard 02 — ran structured prompt
   // checked[2-7]: Layer cards L0-L5
   const [checked, setChecked] = useState<boolean[]>(() => new Array(8).fill(false))
-  const [openAdv, setOpenAdv] = useState<string | null>(null)
   const toggleCheck = useCallback((i: number) => {
     setChecked(prev => { const next = [...prev]; next[i] = !next[i]; return next })
   }, [])
@@ -49,7 +48,6 @@ export default function Level1Page() {
   const breakdown: Array<{ layer: string; highlight: string; explanation: string }> = res['prompt-good'].breakdown
 
   const conceptResources = resourcesData.resources.filter(r => r.type === 'concept')
-  const advancedResources = resourcesData.resources.filter(r => r.type === 'advanced')
 
   return (
     <>
@@ -67,7 +65,7 @@ export default function Level1Page() {
           <h1 className="text-4xl sm:text-5xl font-bold leading-tight" style={{ fontFamily: 'var(--font-display)' }}>
             {briefingData.level.title}
           </h1>
-          <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)', lineHeight: 1.7, textAlign: 'justify' }}>
+          <p className="text-lg leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)', lineHeight: 1.7, textAlign: 'left', whiteSpace: 'pre-line' }}>
             {briefingData.level.subdescription}
           </p>
           <span className="pill-badge">⏱ {briefingData.level.duration.toUpperCase()}</span>
@@ -81,8 +79,8 @@ export default function Level1Page() {
           <p className="section-eyebrow">// PART 01 — SEE THE DIFFERENCE</p>
 
           <StepCard stepNumber={vagueCard.card} title={vagueCard.title} description={vagueCard.description} checked={checked[0]} onCheck={() => toggleCheck(0)}>
-            <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex">
-              OPEN CHATGPT <ExternalLink size={12} />
+            <a href="https://claude.ai/" target="_blank" rel="noopener noreferrer" className="btn-secondary inline-flex">
+              OPEN CLAUDE <ExternalLink size={12} />
             </a>
             <PromptBlock label={res['prompt-vague'].label.toUpperCase()} promptText={vaguePrompt} variant="test" substituteMinion={true} />
             <div className="p-3 rounded-lg" style={{ background: 'rgba(255,215,0,0.06)', border: '1px solid rgba(255,215,0,0.2)' }}>
@@ -110,7 +108,7 @@ export default function Level1Page() {
               The Structured Prompt Has 5 Layers.
             </h2>
             <p className="text-sm mt-2 leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
-              Every layer does something different. Together they turn a vague request into a precise instruction. Here is exactly what was added and why it works.
+              Every layer does one job. Together they turn a vague request into a precise instruction. Read what each one contributes - you will add them yourself in Part 02.
             </p>
           </div>
 
@@ -153,7 +151,7 @@ export default function Level1Page() {
               Now Add Each Layer Yourself.
             </h2>
             <p className="text-sm mt-2 leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
-              Start from the vague prompt. Add one layer at a time. Run it after each addition. Watch how the output changes with every step.
+              Part 01 took a finished prompt apart. Now you build one from nothing. Start with a raw question, add a single layer, run it, and read what changed before moving on. The highlighted text on each card is the only thing that is new - everything else carries forward untouched.
             </p>
           </div>
 
@@ -221,62 +219,6 @@ export default function Level1Page() {
             })}
           </div>
 
-          {/* Advanced techniques — collapsible accordion */}
-          <div className="rounded-lg overflow-hidden" style={{ border: '1px solid var(--border-purple)' }}>
-            <div className="px-5 py-4" style={{ background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border)' }}>
-              <p className="font-mono font-bold text-xs tracking-widest" style={{ color: 'var(--purple)' }}>
-                // ADVANCED — WHEN YOU WANT TO GO FURTHER
-              </p>
-            </div>
-            <div className="divide-y" style={{ borderColor: 'var(--border)' }}>
-              {advancedResources.map(adv => {
-                const isOpen = openAdv === adv.id
-                return (
-                  <div key={adv.id}>
-                    <button
-                      onClick={() => setOpenAdv(isOpen ? null : adv.id)}
-                      className="w-full flex items-center justify-between px-5 py-4 text-left transition-colors duration-150"
-                      style={{ background: isOpen ? 'rgba(139,92,246,0.04)' : 'transparent', cursor: 'pointer' }}
-                    >
-                      <div>
-                        <p className="font-mono font-bold text-sm" style={{ color: 'var(--purple)' }}>{adv.label}</p>
-                        <p className="text-xs mt-0.5 leading-relaxed" style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-body)' }}>
-                          {adv.concept_intro}
-                        </p>
-                      </div>
-                      {isOpen
-                        ? <ChevronUp size={15} className="flex-shrink-0 ml-4" style={{ color: 'var(--purple)' }} />
-                        : <ChevronDown size={15} className="flex-shrink-0 ml-4" style={{ color: 'var(--text-muted)' }} />
-                      }
-                    </button>
-                    {isOpen && (
-                      <div className="px-5 pb-5 space-y-3" style={{ borderTop: '1px solid var(--border)' }}>
-                        <p className="text-xs font-mono font-bold tracking-widest pt-4" style={{ color: 'var(--text-muted)' }}>
-                          {adv.try_prompt?.instruction}
-                        </p>
-                        <PromptBlock
-                          label={adv.label.toUpperCase()}
-                          promptText={adv.try_prompt?.content ?? ''}
-                          variant="advanced"
-                          substituteMinion={true}
-                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          highlightText={(adv as any).added_highlight ?? null}
-                        />
-                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                        {(adv.try_prompt as any)?.what_changed && (
-                          <div className="flex items-start gap-2 p-3 rounded-lg" style={{ background: 'rgba(139,92,246,0.06)', border: '1px solid rgba(139,92,246,0.2)' }}>
-                            <span className="font-mono font-bold text-xs flex-shrink-0" style={{ color: 'var(--purple)' }}>+ WHAT CHANGED:</span>
-                            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                            <p className="text-xs font-mono" style={{ color: 'var(--text-secondary)' }}>{(adv.try_prompt as any).what_changed}</p>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-          </div>
         </section>
 
         {/* Mission Check */}
@@ -284,7 +226,7 @@ export default function Level1Page() {
           <MissionCheck
             items={briefingData.mission_check}
             nextLevel="/level/2"
-            nextLabel="ADVANCE TO LEVEL 02: ARM YOUR MINION"
+            nextLabel="ADVANCE TO LEVEL 02: SET UP BASE"
             levelNumber={1}
             checked={checked}
             onToggle={toggleCheck}

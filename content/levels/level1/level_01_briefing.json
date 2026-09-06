@@ -2,16 +2,17 @@
   "level": {
     "number": "01",
     "title": "Talk to Your Minion",
-    "eyebrow": "// LEVEL 01 - PROMPT ENGINEERING",
+    "eyebrow": "// LEVEL 01 — PROMPT ENGINEERING",
     "concept": "Prompt Engineering",
-    "duration": "20 min",
-    "subdescription": "Your Minion just arrived. They are eager, willing, and understand absolutely nothing. The quality of their response depends entirely on the quality of your order. Learn to give precise, structured prompts and watch your Minion transform from confused to capable."
+    "duration": "15 min",
+    "subdescription": "Your Minion just arrived. They are eager, willing, and understand absolutely nothing. The quality of their response depends entirely on the quality of your order. You will see the difference a structured prompt makes, then build one yourself - one layer at a time - and watch the answer improve at every step."
   },
-
   "mission_targets": [
-    "Apply core prompt engineering principles such as role, context, task, format, and constraints to write more effective AI prompts"
+    "See the same question asked two ways, and why one answer is far better",
+    "Learn the five layers of a strong prompt: Task, Role, Context, Format, and Constraints",
+    "Build a complete structured prompt yourself by adding one layer at a time",
+    "Leave with a repeatable method you can apply to any AI tool and any real task"
   ],
-
   "mission_gear": [
     {
       "id": "prompt-engineering",
@@ -26,12 +27,11 @@
       ]
     }
   ],
-
   "mission_check": [
     "Ran the vague prompt and saw the generic output",
     "Ran the structured prompt and compared the two outputs",
     "Ran L0 - Raw Ask and set my baseline",
-    "Ran L1 - Specificity and saw the first improvement",
+    "Ran L1 - Task and made the ask specific",
     "Ran L2 - Role and noticed how the thinking changed",
     "Ran L3 - Context and saw it answer for my world",
     "Ran L4 - Output Format and got a usable result",

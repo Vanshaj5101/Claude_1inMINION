@@ -2,19 +2,27 @@
   "level": "03",
   "resources": [
     {
-      "id": "gpt-url",
-      "type": "link",
-      "label": "1inMINION Project Manager GPT",
-      "url": "https://chatgpt.com/g/g-6a192ef1fb1481919a5d08c17df59778-1inminion-project-manager",
-      "description": "Your pre-built Custom GPT. Open this link to get started."
+      "id": "prompt-no-skill",
+      "type": "prompt",
+      "label": "Presentation Prompt — Without the Skill",
+      "instruction": "Go back to the chat where you answered the 5 mission questions. Do not start a new chat — every finding your Minion uncovered is already in that conversation. Run this and keep the result.",
+      "content": "Build a presentation for Gru covering everything we found today.",
+      "note": "Notice what it did NOT do. It never asked who is in the room, what you want Gru to decide, or what tone fits. It just started building."
     },
     {
-      "id": "prompt-with-gpt",
+      "id": "skill-file",
+      "type": "download",
+      "label": "Presentation Builder Skill",
+      "filename": "pitch_skill.md",
+      "description": "A Skill that makes Claude interview you first, then build a properly designed deck and hand it back as a PowerPoint file. Works in any Project, on any topic."
+    },
+    {
+      "id": "prompt-with-skill",
       "type": "prompt",
-      "label": "Run Your Custom GPT",
-      "instruction": "Upload your mission_debrief.txt file from Level 2 into the chat, then send this prompt:",
-      "content": "Here is my project brief. Please create my project plan.",
-      "note": "Your Custom GPT will read your mission debrief and generate a fully structured HTML project plan — with risks, a quick win, and an interactive checklist."
+      "label": "Presentation Prompt — With the Skill",
+      "instruction": "Stay in that same chat. Paste the identical prompt again, word for word. Change nothing — the only thing different this time is that the Skill exists.",
+      "content": "Build a presentation for Gru covering everything we found today.",
+      "note": "Answer the five questions it asks you. Short answers are fine. Then watch it build something shaped by your answers instead of its own guess."
     }
   ]
 }

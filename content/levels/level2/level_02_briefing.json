@@ -2,44 +2,52 @@
   "level": {
     "number": "02",
     "title": "Arm Your Minion",
-    "eyebrow": "// LEVEL 02 — CUSTOM GPTs",
-    "concept": "Custom GPTs",
+    "eyebrow": "// LEVEL 02 — PROJECTS",
+    "concept": "Projects",
     "duration": "25 min",
-    "subdescription": "Your Minion understands your orders now. But the sun does not steal itself.\nArm them as a data-driven strategist, load 374 mission records, and let them find the pattern nobody spotted."
+    "subdescription": "Your Minion takes orders well now. But every new chat is a blank slate — no memory, no context, back to square one.\nTime to build them a permanent base. Load the instructions once, load 374 mission records once, and let them find the pattern nobody spotted."
   },
-
   "mission_targets": [
-    "Build your first Custom GPT trained as a data-driven mission strategist",
-    "Upload the mission data file so your GPT can analyze 374 previous heist records",
-    "Find answers to the 5 mission questions from the data",
-    "Invent one special tool and compile everything into a mission debrief file"
+    "Build a Claude Project — a permanent workspace your Minion never forgets",
+    "Load instructions and 374 mission records into it once, not every chat",
+    "Prove the memory works by asking a brand new chat what it already knows",
+    "Interrogate the data to answer the 5 mission questions and invent your special tool"
   ],
-
   "mission_gear": [
     {
-      "id": "custom-gpt-data",
-      "name": "Custom GPT with Data",
-      "definition": "A Custom GPT is a specialist version of ChatGPT trained with specific instructions. When you upload a data file, it becomes an analyst that can find patterns and insights from your exact dataset.",
-      "theme_translation": "Think of it as giving your Minion a dossier. A regular Minion makes guesses. Your Data Strategist Minion reads 374 mission records, spots what nobody else noticed, and tells you exactly what the data says.",
+      "id": "projects",
+      "name": "Projects",
+      "definition": "A permanent workspace in Claude that holds your instructions and your files, so every new chat inside it starts with your Minion already briefed.",
+      "theme_translation": "Think of it as Gru's Lair. Without it, Gru would rebuild the entire operation from scratch every single morning. With it, everything is already in place the moment he walks in.",
       "why_useful": [
-        "Analyzes your specific data rather than guessing from general knowledge",
-        "Finds patterns and surprising insights humans miss",
-        "Answers questions grounded in real numbers and percentages",
-        "Stays consistent and focused on your mission throughout"
+        "Your Minion remembers who it is and what it knows",
+        "You stop re-explaining yourself in every new chat",
+        "Instructions and files are set once and reused forever",
+        "Everything for one piece of work stays in one place"
+      ]
+    },
+    {
+      "id": "context",
+      "name": "Context",
+      "definition": "The background you load into a Project — Claude calls this panel Context. Files, data, and instructions that tell your Minion about your world before you ask it anything.",
+      "theme_translation": "Before any great heist, Gru briefs the team. Here is the target, here is what we know, here is what went wrong last time. Context is that briefing, delivered once and never repeated.",
+      "why_useful": [
+        "Answers are grounded in your actual data, not general knowledge",
+        "Specific beats generic every single time",
+        "The more context you load, the sharper your Minion gets",
+        "Files, data, and instructions all count as context"
       ]
     }
   ],
-
   "mission_check": [
-    "I created a Custom GPT called 1inMINION Data Strategist",
-    "I added the name, description, and instructions to the GPT",
-    "I uploaded the mission data file to my GPT",
-    "I found the best timing from the data (Q01)",
-    "I found the best ship from the data (Q02)",
-    "I found the optimal team size from the data (Q03)",
-    "I found the budget range from the data (Q04)",
-    "I found the biggest mission risk from the data (Q05)",
-    "My GPT invented a special tool for the mission",
-    "I generated the mission debrief and saved it as a txt file"
+    "Created a Claude Project and named it after my Minion",
+    "Pasted the project instructions into the Project",
+    "Added the mission data file to the Project's Context",
+    "Found the best timing from the data (Q01)",
+    "Found the best ship from the data (Q02)",
+    "Found the optimal team size from the data (Q03)",
+    "Found the budget range from the data (Q04)",
+    "Found the biggest mission risk from the data (Q05)",
+    "My Minion invented a special tool for the mission"
   ]
 }
