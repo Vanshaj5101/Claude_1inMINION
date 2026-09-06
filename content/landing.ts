@@ -34,12 +34,12 @@ export const landingContent = {
     ctaButton: "TRAIN THE MINION",
   },
 
-  levelsSection: {
-    sectionLabel: "THE TRAINING PROGRAM",
-    heading: "4 Levels. One Mission.",
-    subheading:
-      "Each level gives your Minion a new capability. " +
-      "Complete all 4 and your Minion is ready for the heist.",
+  requirements: {
+    label: "BEFORE YOU START",
+    items: [
+      "A Claude account — the paid plan (about $20/month) is needed for Projects, Skills, and Connectors",
+      "About 70 minutes, and a partner to send the final invite to",
+    ],
   },
 
   connect: {

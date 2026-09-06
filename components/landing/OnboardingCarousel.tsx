@@ -17,7 +17,7 @@ const accentColor: Record<string, string> = {
 const TOTAL = 4 // 4 slides: Backstory, Mission, Training Program, Name entry
 
 export default function OnboardingCarousel() {
-  const { story } = landingContent
+  const { story, requirements } = landingContent
   const searchParams = useSearchParams()
   const startSlide = Math.min(Math.max(parseInt(searchParams.get('slide') ?? '0', 10) || 0, 0), TOTAL - 1)
   const [current, setCurrent] = useState(startSlide)
@@ -180,6 +180,29 @@ export default function OnboardingCarousel() {
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'rgba(255,255,255,0.65)', lineHeight: 1.65, margin: 0 }}>
                 Each level builds on the last. Do not skip ahead.
               </p>
+            </div>
+
+            {/* What you need before starting */}
+            <div style={{
+              width: '100%',
+              background: 'rgba(242,155,28,0.10)',
+              border: '1px solid rgba(242,155,28,0.35)',
+              borderLeft: '3px solid var(--yellow)',
+              borderRadius: 10,
+              padding: '14px 16px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 8,
+            }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', color: 'var(--yellow)' }}>
+                {requirements.label}
+              </span>
+              {requirements.items.map((item, i) => (
+                <p key={i} style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'rgba(255,255,255,0.78)', lineHeight: 1.6, margin: 0, display: 'flex', gap: 8 }}>
+                  <span style={{ color: 'var(--yellow)', flexShrink: 0 }}>→</span>
+                  {item}
+                </p>
+              ))}
             </div>
 
             {/* Name input */}

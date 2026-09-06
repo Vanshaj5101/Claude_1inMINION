@@ -61,11 +61,12 @@ export default function Navigation() {
       {/* Right: connect */}
       <div ref={connectRef} style={{ flexShrink: 0, position: 'relative' }}>
         <button
+          className="connect-btn"
           onClick={() => setConnectOpen(o => !o)}
           aria-haspopup="menu"
           aria-expanded={connectOpen}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 22px rgba(242,155,28,0.6)' }}
-          onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 3px 14px rgba(242,155,28,0.4)' }}
+          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px) scale(1.03)' }}
+          onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0) scale(1)' }}
           style={{
             fontFamily: 'var(--font-mono)',
             fontSize: 12,
@@ -74,20 +75,38 @@ export default function Navigation() {
             color: '#1F2937',
             background: 'var(--yellow)',
             border: 'none',
-            padding: '9px 18px',
-            borderRadius: 8,
+            padding: '6px 14px 6px 6px',
+            borderRadius: 999,
             whiteSpace: 'nowrap',
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
-            gap: 7,
-            boxShadow: '0 3px 14px rgba(242,155,28,0.4)',
-            transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+            gap: 9,
+            transition: 'transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            animation: connectOpen ? 'none' : 'connectHalo 2.8s ease-in-out infinite',
           }}
         >
+          <span
+            style={{
+              width: 28, height: 28, borderRadius: '50%', overflow: 'hidden', flexShrink: 0,
+              background: 'rgba(255,255,255,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            <Image
+              src="/minion_img.png"
+              alt=""
+              width={28}
+              height={28}
+              className="connect-avatar"
+              style={{
+                objectFit: 'contain',
+                animation: connectOpen ? 'none' : 'connectNudge 5s ease-in-out infinite',
+              }}
+            />
+          </span>
           <span className="hidden sm:inline">{connect.label}</span>
           <span className="sm:hidden">HUMAN</span>
-          <ChevronDown size={13} style={{ flexShrink: 0, transform: connectOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.15s ease' }} />
+          <ChevronDown size={13} style={{ flexShrink: 0, transform: connectOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.18s ease' }} />
         </button>
 
         {connectOpen && (

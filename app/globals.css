@@ -438,3 +438,19 @@ mark.story-highlight {
   0%, 100% { opacity: 0.25; }
   50%       { opacity: 0.9; }
 }
+
+/* Connect button — periodic nudge so it invites a click without nagging */
+@keyframes connectNudge {
+  0%, 88%, 100% { transform: translateY(0) rotate(0deg); }
+  91%           { transform: translateY(-3px) rotate(-7deg); }
+  94%           { transform: translateY(-1px) rotate(6deg); }
+  97%           { transform: translateY(0) rotate(-2deg); }
+}
+@keyframes connectHalo {
+  0%, 100% { box-shadow: 0 3px 14px rgba(242,155,28,0.40); }
+  50%      { box-shadow: 0 3px 20px rgba(242,155,28,0.75); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .connect-avatar { animation: none !important; }
+  .connect-btn    { animation: none !important; }
+}
