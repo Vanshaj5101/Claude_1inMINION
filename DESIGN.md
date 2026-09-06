@@ -325,7 +325,7 @@ CTA: hero-cta pill button (gradient, large)
 | Context | Tone |
 |---------|------|
 | Section labels | Tactical, all-caps. `// PART 01 — SEE THE DIFFERENCE` |
-| Instructions | Direct imperative. "Open ChatGPT in a new tab. Copy and paste this prompt." |
+| Instructions | Direct imperative. "Open Claude in a new tab. Copy and paste this prompt." |
 | Concept intros | Confident and slightly dramatic. "Replace vague words with precise ones. Non-negotiable for any real mission." |
 | Notes / tips | Warm, insightful. "Same Minion. Same topic. Completely different output." |
 | Button labels | Action-forward. `OPEN CLAUDE.AI`, `COPY`, `ADVANCE TO LEVEL 02` |
@@ -345,7 +345,7 @@ CTA: hero-cta pill button (gradient, large)
 | `Clipboard` / `Check` | Prompt block copy button |
 | `CheckSquare` / `Square` | Step completion toggle |
 | `ChevronDown` / `ChevronUp` | Accordion expand/collapse |
-| `ExternalLink` | Link-out to ChatGPT.com |
+| `ExternalLink` | Link-out to claude.ai |
 | `ArrowRight` | CTA forward navigation |
 | `Lock` | Locked nav level node |
 

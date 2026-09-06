@@ -119,14 +119,14 @@ export default function OnboardingCarousel() {
 
         {/* ── Slide 3: Training Program ──────────────────────── */}
         <div style={slideStyle}>
-          <div style={{ maxWidth: 900, width: '100%', display: 'flex', flexDirection: 'column', gap: 28 }}>
+          <div style={{ maxWidth: 1040, width: '100%', display: 'flex', flexDirection: 'column', gap: 28 }}>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--yellow)', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700 }}>
               TRAINING PROGRAM
             </span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 5vw, 60px)', color: 'white', lineHeight: 1.1, margin: 0 }}>
-              5 Levels. 90 Minutes. One Heist Plan.
+              4 Levels. 70 Minutes. One Heist Plan.
             </h2>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, width: '100%' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16, width: '100%' }}>
               {levels.map(level => {
                 const accent = accentColor[level.color] ?? 'var(--yellow)'
                 const isHovered = hoveredCard === level.number
@@ -175,7 +175,7 @@ export default function OnboardingCarousel() {
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'rgba(255,255,255,0.65)', lineHeight: 1.65, margin: 0 }}>
-                Keep this page open alongside ChatGPT throughout the session
+                Keep this page open alongside Claude throughout the session
               </p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'rgba(255,255,255,0.65)', lineHeight: 1.65, margin: 0 }}>
                 Each level builds on the last. Do not skip ahead.

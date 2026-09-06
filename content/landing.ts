@@ -23,10 +23,11 @@ export const landingContent = {
     ],
     missionBox: {
       label: "YOUR MISSION",
-      heading: "Train Your Minion.",
+      heading: "Build Your Own Minion.",
       description:
-        "You will build and train your own AI Minion, powered by ChatGPT, to become a data-driven strategist. " +
-        "Together you will analyze 374 previous mission records, find what works, and build a complete mission plan for Operation: Steal the Sun.",
+        "You will build and train your own AI Minion, powered by Claude, from a blank chat into something that " +
+        "analyses data, follows your method, and acts in the real world on its own. " +
+        "Together you will read 374 previous mission records and plan Operation: Steal the Sun.",
       highlight:
         "Every skill you build with your Minion today is a skill you take back to your real work tomorrow.",
     },
@@ -35,12 +36,19 @@ export const landingContent = {
 
   levelsSection: {
     sectionLabel: "THE TRAINING PROGRAM",
-    // heading: "4 Levels. One Mission.",          // Level 04 temporarily hidden
-    heading: "3 Levels. One Mission.",
-    // subheading: "Each level gives your Minion a new capability. Complete all 4 and your Minion is ready for the heist.",
+    heading: "4 Levels. One Mission.",
     subheading:
       "Each level gives your Minion a new capability. " +
-      "Complete all 3 and your Minion is ready for the heist.",
+      "Complete all 4 and your Minion is ready for the heist.",
+  },
+
+  connect: {
+    label: "MEET THE HUMAN",
+    intro: "// THE ONE BEHIND THE MINIONS",
+    links: [
+      { id: "linkedin",  label: "LINKEDIN",  url: "https://www.linkedin.com/in/vanshajgupta/" },
+      { id: "portfolio", label: "PORTFOLIO", url: "https://vanshajgupta.com/" },
+    ],
   },
 
 } as const

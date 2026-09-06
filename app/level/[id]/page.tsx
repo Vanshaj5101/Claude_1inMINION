@@ -3,7 +3,6 @@ import Level1Page from '@/components/levels/Level1Page'
 import Level2Page from '@/components/levels/Level2Page'
 import Level3Page from '@/components/levels/Level3Page'
 import Level4Page from '@/components/levels/Level4Page'
-import Level5Page from '@/components/levels/Level5Page'
 
 interface Props {
   params: { id: string }
@@ -16,11 +15,10 @@ export default function LevelPage({ params }: Props) {
   if (id === 2) return <Level2Page />
   if (id === 3) return <Level3Page />
   if (id === 4) return <Level4Page />
-  if (id === 5) return <Level5Page />
 
   redirect('/')
 }
 
 export function generateStaticParams() {
-  return [{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }, { id: '5' }]
+  return [{ id: '1' }, { id: '2' }, { id: '3' }, { id: '4' }]
 }

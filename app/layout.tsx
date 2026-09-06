@@ -27,9 +27,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Heist to the Sun — AI Training Experience',
-  description: 'AI Minion Training Program — Mission Control',
-  robots: 'noindex',
+  title: 'Heist to the Sun — Learn Claude in 4 Levels',
+  description:
+    'A hands-on AI training experience for non-technical teams. Build your own AI Minion with Claude across four levels: prompt engineering, Projects, Skills, and MCPs.',
   icons: {
     icon: '/favicon.png',
     apple: '/favicon.png',
