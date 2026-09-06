@@ -38,7 +38,6 @@ export const landingContent = {
     label: "BEFORE YOU START",
     items: [
       "A Claude account — the paid plan (about $20/month) is needed for Projects, Skills, and Connectors",
-      "About 70 minutes, and a partner to send the final invite to",
     ],
   },
 
