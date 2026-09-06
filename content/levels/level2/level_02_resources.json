@@ -45,7 +45,7 @@
       "id": "mission-questions",
       "type": "mission",
       "label": "The 5 Mission Questions",
-      "instruction": "Ask your Minion each of these questions, one at a time, in your Project chat.",
+      "instruction": "Stay in that second chat — the one you just used to test the memory. Ask these five questions there, one at a time. Keep this conversation open: everything from here to the end of Level 04 happens inside it.",
       "questions": [
         {
           "number": "01",
@@ -78,7 +78,7 @@
       "id": "prompt-special-tool",
       "type": "prompt",
       "label": "Invent Your Special Tool",
-      "instruction": "Ask your Minion to invent something no previous mission team had. Copy and paste this prompt:",
+      "instruction": "Still in that same chat. Ask your Minion to invent something no previous mission team had. Copy and paste this prompt:",
       "content": "Based on everything you found in the data - especially why previous missions failed - invent one special tool that solves our single biggest mission risk.\n\nGive it a name, one sentence on what it does, and one sentence on why it gives us an edge no previous mission team ever had."
     }
   ]
