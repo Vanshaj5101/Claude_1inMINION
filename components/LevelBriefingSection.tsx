@@ -120,8 +120,8 @@ export default function LevelBriefingSection({ data }: { data: BriefingData }) {
                   <p className="text-sm leading-relaxed" style={{ fontFamily: 'var(--font-body)', color: 'var(--text-secondary)', lineHeight: 1.7 }}>
                     {selectedGear.definition}
                   </p>
-                  <div className="p-4 rounded-lg" style={{ background: '#FFFBEB', borderLeft: '3px solid var(--yellow)' }}>
-                    <p className="text-xs font-bold mb-1.5" style={{ fontFamily: 'var(--font-mono)', color: 'var(--yellow)', letterSpacing: '0.1em' }}>
+                  <div className="important">
+                    <p className="text-xs font-bold mb-1.5" style={{ fontFamily: 'var(--font-mono)', color: 'var(--yellow-text)', letterSpacing: '0.1em' }}>
                       🍌 GRU TRANSLATION
                     </p>
                     <p className="text-xs leading-relaxed" style={{ fontFamily: 'var(--font-body)', color: 'var(--text-secondary)', lineHeight: 1.65 }}>

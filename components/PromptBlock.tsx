@@ -124,7 +124,7 @@ export default function PromptBlock({ promptText, label, variant = 'core', subst
             const idx = displayText.indexOf(highlightText)
             const hlBg = variant === 'advanced'
               ? 'rgba(139,92,246,0.18)'
-              : 'rgba(242,155,28,0.15)'
+              : 'var(--tint-amber-hi)'
             const hlColor = variant === 'advanced'
               ? 'var(--purple)'
               : 'var(--yellow-text)'

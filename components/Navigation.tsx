@@ -204,7 +204,7 @@ export default function Navigation() {
                   width: `calc(25% - 40px)`,
                   height: 2,
                   background: nextReached
-                    ? 'linear-gradient(to right, var(--yellow-muted), rgba(255,215,0,0.35))'
+                    ? 'linear-gradient(to right, var(--yellow-muted), var(--rule-amber))'
                     : 'var(--border)',
                   borderRadius: 1,
                   transition: 'background 0.3s ease',
@@ -235,8 +235,8 @@ export default function Navigation() {
                         <div style={{
                           width: 40, height: 40, borderRadius: '50%',
                           border: isCurrent ? '2.5px solid var(--yellow)' : isCompleted ? '2.5px solid var(--yellow)' : '2px solid var(--border)',
-                          background: isCurrent ? 'var(--yellow-light)' : isCompleted ? 'rgba(242,155,28,0.10)' : 'var(--bg-secondary)',
-                          boxShadow: isCurrent ? '0 0 0 3px rgba(255,215,0,0.2)' : isHovered ? '0 0 0 4px rgba(255,215,0,0.25)' : 'none',
+                          background: isCurrent ? 'var(--yellow-light)' : isCompleted ? 'var(--tint-amber-hi)' : 'var(--bg-secondary)',
+                          boxShadow: isCurrent ? '0 0 0 3px var(--tint-amber-hi)' : isHovered ? '0 0 0 4px var(--tint-amber-hi)' : 'none',
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                           transition: 'box-shadow 0.2s ease',
                           overflow: 'hidden',

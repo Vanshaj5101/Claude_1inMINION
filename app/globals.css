@@ -30,6 +30,12 @@
   --text-secondary: #374151;
   --text-muted:     #6B7280;
 
+  /* Emphasis ladder — the ONLY amber tints allowed.
+     plain -> note -> important -> payoff. Never invent a new alpha. */
+  --tint-amber:     rgba(242, 155, 28, 0.08);
+  --tint-amber-hi:  rgba(242, 155, 28, 0.14);
+  --rule-amber:     rgba(242, 155, 28, 0.45);
+
   /* Borders */
   --border:         #E5E7EB;
   --border-yellow:  #f29b1c;
@@ -318,14 +324,21 @@ mark.story-highlight {
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: 0.14em;
+  color: var(--yellow-muted);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin-bottom: 8px;
-  display: inline-block;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 2px;
   background: var(--yellow);
-  padding: 3px 8px;
-  border-radius: 4px;
+  border-radius: 1px;
+  flex-shrink: 0;
 }
 
 /* Pill badge */
@@ -453,4 +466,55 @@ mark.story-highlight {
 @media (prefers-reduced-motion: reduce) {
   .connect-avatar { animation: none !important; }
   .connect-btn    { animation: none !important; }
+}
+
+
+/* ── Emphasis ladder ──────────────────────────────────────────────────────
+   One accent, four ranks. Use the highest rank sparingly: at most one
+   `payoff` per page, or the ranking stops meaning anything.            */
+
+.surface {                       /* plain — the default container */
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.surface-done {                  /* plain, completed */
+  border-color: var(--green);
+}
+
+.note {                          /* an aside, a tip, a caption */
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.important {                     /* the one thing they must not miss */
+  background: var(--tint-amber);
+  border-left: 3px solid var(--yellow);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 16px;
+}
+
+.payoff {                        /* the moment the level is about — max 1/page */
+  border: 2px solid var(--yellow);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.payoff-header {
+  background: var(--yellow);
+  padding: 16px 20px;
+}
+.payoff-body {
+  background: var(--bg-warm);
+  padding: 20px;
+}
+
+/* Meta label — mono, uppercase. Cap at three per page. */
+.meta-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }

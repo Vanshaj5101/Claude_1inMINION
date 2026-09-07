@@ -77,8 +77,8 @@ export default function MissionCheck({ items, nextLevel, nextLabel, levelNumber,
           className="font-mono font-bold text-xs tracking-wide transition-all duration-150 px-3 py-1.5 rounded-md"
           style={{
             color: 'var(--yellow-text)',
-            background: 'rgba(242,155,28,0.1)',
-            border: '1px solid rgba(242,155,28,0.3)',
+            background: 'var(--tint-amber)',
+            border: '1px solid var(--rule-amber)',
             cursor: 'pointer',
             letterSpacing: '0.08em',
           }}
