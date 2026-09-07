@@ -112,19 +112,23 @@ not go through `PromptBlock`.
 
 ## Analytics
 
-GA4 via `@next/third-parties`, wired in `app/layout.tsx` and gated on
-`NEXT_PUBLIC_GA_ID`. With no ID set, nothing renders and nothing is sent — local dev is
-always clean.
+Two tools, deliberately. They answer different questions and neither needs a cookie banner
+decision to be revisited.
 
-**Google Consent Mode v2 runs with everything denied by default.** That inline script must
-stay a plain synchronous `<script>` in `<head>`, because it has to execute before `gtag.js`
-loads. Do not move it to `next/script`. The result is cookieless: visitor counts, referrers,
-and page reports still work, with no cookie banner needed.
+**Vercel Web Analytics** — `<Analytics />` from `@vercel/analytics/next` in
+`app/layout.tsx`. Cookieless, so visitor counts stay accurate without any consent
+machinery. Only activates when deployed on Vercel; it is inert locally. Must also be
+switched on once in the Vercel dashboard under the project's Analytics tab.
 
-Custom events go through `trackEvent()` in `lib/analytics.ts`, which no-ops when analytics
-is absent. Currently `click_linkedin` and `click_portfolio`, fired from the Connect menu.
-Pageviews (including client-side level navigation), outbound clicks, and `.csv` downloads
-are all covered free by GA4 enhanced measurement.
+**GA4** — via `@next/third-parties`, gated on `NEXT_PUBLIC_GA_ID`. With no ID set nothing
+renders and nothing is sent, so local dev is always clean. This is a plain cookie-based
+install; Consent Mode was tried and removed, because denying storage broke the unique
+visitor counts that were the whole point. Vercel Analytics covers that metric instead.
+
+Custom events go through `trackEvent()` in `lib/analytics.ts`, which no-ops when GA is
+absent so callers never guard. Currently `click_linkedin` and `click_portfolio`, fired from
+the Connect menu. Pageviews (including client-side level navigation), outbound clicks, and
+`.csv` downloads come free from GA4 enhanced measurement.
 
 ## Commands
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Bangers, Nunito, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { Analytics } from '@vercel/analytics/next'
 import Navigation from '@/components/Navigation'
 import StickyClaudeButton from '@/components/StickyClaudeButton'
 
@@ -55,29 +56,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        {GA_ID && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('consent', 'default', {
-                  ad_storage: 'denied',
-                  ad_user_data: 'denied',
-                  ad_personalization: 'denied',
-                  analytics_storage: 'denied',
-                  functionality_storage: 'granted',
-                  security_storage: 'granted'
-                });
-              `,
-            }}
-          />
-        )}
       </head>
       <body>
         <Navigation />
         {children}
         <StickyClaudeButton />
+        <Analytics />
         {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>
     </html>
