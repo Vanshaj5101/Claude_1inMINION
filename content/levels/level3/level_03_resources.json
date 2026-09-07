@@ -14,7 +14,7 @@
       "type": "download",
       "label": "Presentation Builder Skill",
       "filename": "pitch_skill.md",
-      "description": "A Skill that makes Claude interview you first, then build a properly designed deck and hand it back as a PowerPoint file. Works in any Project, on any topic."
+      "description": "A Skill that makes Claude interview you first with a short multiple-choice brief, then build a properly designed deck and hand it back as a PowerPoint file. Works in any Project, on any topic."
     },
     {
       "id": "prompt-with-skill",
@@ -22,7 +22,7 @@
       "label": "Presentation Prompt — With the Skill",
       "instruction": "Stay in that same chat. Paste the identical prompt again, word for word. Change nothing — the only thing different this time is that the Skill exists.",
       "content": "Build a presentation for Gru covering everything we found today.",
-      "note": "Answer the five questions it asks you. Short answers are fine. Then watch it build something shaped by your answers instead of its own guess."
+      "note": "It stops and asks five questions instead of building. Answer with just the letters — you can pick several where it says so. Then watch it build something shaped by your answers instead of its own guess."
     }
   ]
 }

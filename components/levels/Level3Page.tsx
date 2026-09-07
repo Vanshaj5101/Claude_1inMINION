@@ -201,7 +201,7 @@ export default function Level3Page() {
             <div className="rounded-lg p-4 space-y-2" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border)' }}>
               <p className="font-mono font-bold text-xs tracking-widest" style={{ color: 'var(--text-muted)' }}>THE FIVE QUESTIONS IT WILL ASK</p>
               <ul className="space-y-1">
-                {['Who is going to see this?', 'What do you want them to do or feel afterwards?', 'Pick a vibe — bold, clean, warm, or energetic?', 'Any colour or visual style you love or hate?', 'Anything it must include that Claude would not know?'].map(q => (
+                {['Who is this for? (pick as many as apply)', 'What do you want them to do afterwards? (pick as many as apply)', 'What should it feel like — bold, clean, warm, or energetic?', 'Any colour or visual direction?', 'Anything it must include that Claude would not know?'].map(q => (
                   <li key={q} className="flex items-start gap-2 text-xs" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
                     <span style={{ color: 'var(--yellow-text)', flexShrink: 0 }}>→</span>{q}
                   </li>

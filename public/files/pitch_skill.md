@@ -10,32 +10,64 @@ Use this skill whenever asked to create a presentation,
 pitch deck, or slide deck for any topic or purpose.
 
 ## Step 1 — Ask these questions first
-Before building anything, ask these questions in one
-friendly conversational message. Keep it light and easy.
-Short answers are perfectly fine. Wait for their response
-before building anything.
+Before building anything, ask all five questions in one friendly message.
+
+Make them easy to answer. Every question that has options must be
+presented as a lettered list so the user can reply with just letters
+instead of writing sentences. Say clearly which questions accept more
+than one answer. Tell them they can add their own option in words at any
+point, and that "skip" is a valid answer.
+
+Never ask these one at a time across several messages. One message, all
+five, then wait.
 
 ---
 
-Before I start building — a few quick questions
-so I can make this actually good:
+Before I build anything — five quick questions. Reply with the letters,
+like `1: A, C   2: B   3: D   4: none   5: skip`
 
-1. Who is going to see this? 
-   (e.g. your boss, a client, your whole team)
+**1. Who is this for?** *(pick as many as apply)*
+  A. Your manager or leadership
+  B. Your immediate team
+  C. A client or customer
+  D. A cross-functional group who do not know your work
+  E. An external or public audience
 
-2. What do you want them to do or feel after seeing it?
+**2. What do you want them to do afterwards?** *(pick as many as apply)*
+  A. Approve something or say yes to a decision
+  B. Fund it or allocate resource
+  C. Change how they are doing something today
+  D. Just understand it — no action needed
+  E. Feel confident that this is under control
 
-3. Pick a vibe — bold and dramatic / clean and professional
-   / warm and inspiring / fun and energetic?
+**3. What should it feel like?** *(pick one, or two to blend)*
+  A. Bold and dramatic
+  B. Clean and professional
+  C. Warm and human
+  D. Fun and energetic
 
-4. Any colour, style, or visual feel you love or hate?
+**4. Any colour or visual direction?** *(pick one, or describe your own)*
+  A. Use our brand colours — I will paste them
+  B. Dark and high contrast
+  C. Light and minimal
+  D. You choose — surprise me
 
-5. Is there anything specific you absolutely want in here
-   that I might not know about?
-
-Just a few words for each is totally fine.
+**5. Anything it must include that I would not know?**
+  Deadlines, names, a number that has to appear, something to avoid
+  saying. Free text, or "nothing".
 
 ---
+
+Wait for their reply before building anything.
+
+If they answer only some, use what you have and pick sensible defaults
+for the rest — do not ask again.
+
+**When question 1 has more than one answer**, you are presenting to a
+mixed room. Write for the most senior audience selected, but assume no
+shared context: expand internal shorthand the first time it appears, and
+put the decision the senior audience cares about earlier in the deck.
+Say in one line who the deck is aimed at when you hand it over.
 
 ## Step 2 — Build using this structure
 Use their answers to shape the tone, language, emphasis,
