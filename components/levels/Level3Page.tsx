@@ -142,7 +142,6 @@ export default function Level3Page() {
               </p>
             </div>
             <PromptBlock label="MISSION BRIEF — RUN IN YOUR OLD CHAT" promptText={brief.content} variant="core" substituteMinion={true} />
-            <Callout>{brief.note}</Callout>
 
             <div className="space-y-2" style={{ paddingTop: 4 }}>
               <h3 className="text-lg font-bold leading-snug" style={{ fontFamily: 'var(--font-body)', color: 'var(--text-primary)' }}>
@@ -153,7 +152,7 @@ export default function Level3Page() {
               </p>
             </div>
             <PromptBlock label="PRESENTATION PROMPT — WITH SKILL" promptText={withSkill.content} variant="final" substituteMinion={true} />
-            <Callout tone="important" label="The five questions it will ask">
+            <Callout label="The five questions it will ask">
               <ul className="space-y-1 mt-1">
                 {SKILL_QUESTIONS.map(q => (
                   <li key={q} className="flex items-start gap-2">

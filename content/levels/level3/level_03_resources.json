@@ -21,8 +21,7 @@
       "type": "prompt",
       "label": "Package Up Your Findings",
       "instruction": "Still in your Level 02 chat. Before you go anywhere, ask your Minion to package up everything you found so you can carry it across.",
-      "content": "Before we move to a new chat, package up everything we worked out today so I can carry it over. This brief is all the new chat will know, so do not compress it into headlines.\n\nFor each of the five mission questions, give me the answer, the specific number or percentage behind it, and the one line of reasoning that makes it convincing.\n\nThen our special tool: what it is, what it does, and the risk it removes.\n\nFinish with the two or three most surprising things the data told us.\n\nPlain text, no preamble. Take the space you need — completeness matters more than brevity.",
-      "note": "Copy that whole reply, however long it is. It is your mission brief, and it is the only thing the next Minion will know — every number in your deck comes from it."
+      "content": "Before we move to a new chat, package up everything we worked out today so I can carry it over. This brief is all the new chat will know, so do not compress it into headlines.\n\nFor each of the five mission questions, give me the answer, the specific number or percentage behind it, and the one line of reasoning that makes it convincing.\n\nThen our special tool: what it is, what it does, and the risk it removes.\n\nFinish with the two or three most surprising things the data told us.\n\nPlain text, no preamble. Take the space you need — completeness matters more than brevity."
     },
     {
       "id": "prompt-with-skill",

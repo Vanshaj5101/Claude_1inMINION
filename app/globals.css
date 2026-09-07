@@ -489,10 +489,10 @@ mark.story-highlight {
 }
 
 .important {                     /* the one thing they must not miss */
-  background: var(--tint-amber);
-  border-left: 3px solid var(--yellow);
+  background: var(--tint-amber-hi);
+  border-left: 4px solid var(--yellow);
   border-radius: 0 10px 10px 0;
-  padding: 14px 16px;
+  padding: 15px 18px;
 }
 
 .payoff {                        /* the moment the level is about — max 1/page */
