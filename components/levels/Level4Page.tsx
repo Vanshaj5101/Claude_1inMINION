@@ -105,7 +105,7 @@ export default function Level4Page() {
           <SectionHeader
             eyebrow="// BACK IN THE SAME CHAT"
             title="See What It Can Now See."
-            intro="Everything from here happens in the conversation where you built your presentation, so your Minion already has the data, the findings, the special tool, and the deck in front of it."
+            intro="Everything from here happens in the chat where you built your presentation, so your Minion already has your mission brief and the deck in front of it."
           />
 
           <Card done={checked[1]}>

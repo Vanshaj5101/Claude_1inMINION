@@ -5,7 +5,7 @@
       "id": "prompt-no-skill",
       "type": "prompt",
       "label": "Presentation Prompt — Without the Skill",
-      "instruction": "Go back to the chat where you answered the 5 mission questions. Do not start a new chat — every finding your Minion uncovered is already in that conversation. Run this and keep the result.",
+      "instruction": "Go back to the chat where you answered the 5 mission questions. For this first run stay in that chat — every finding your Minion uncovered is already there. Run this and keep the result.",
       "content": "Build a presentation for Gru covering everything we found today.",
       "note": "Notice what it did NOT do. It never asked who is in the room, what you want Gru to decide, or what tone fits. It just started building."
     },
@@ -17,11 +17,19 @@
       "description": "A Skill that makes Claude interview you first with a short multiple-choice brief, then build a properly designed deck and hand it back as a PowerPoint file. Works in any Project, on any topic."
     },
     {
+      "id": "prompt-mission-brief",
+      "type": "prompt",
+      "label": "Package Up Your Findings",
+      "instruction": "Still in your Level 02 chat. Before you go anywhere, ask your Minion to package up everything you found so you can carry it across.",
+      "content": "Before we move to a new chat, package up everything we worked out today so I can carry it over. This brief is all the new chat will know, so do not compress it into headlines.\n\nFor each of the five mission questions, give me the answer, the specific number or percentage behind it, and the one line of reasoning that makes it convincing.\n\nThen our special tool: what it is, what it does, and the risk it removes.\n\nFinish with the two or three most surprising things the data told us.\n\nPlain text, no preamble. Take the space you need — completeness matters more than brevity.",
+      "note": "Copy that whole reply, however long it is. It is your mission brief, and it is the only thing the next Minion will know — every number in your deck comes from it."
+    },
+    {
       "id": "prompt-with-skill",
       "type": "prompt",
       "label": "Presentation Prompt — With the Skill",
-      "instruction": "Stay in that same chat. Paste the identical prompt again, word for word. Change nothing — the only thing different this time is that the Skill exists.",
-      "content": "Build a presentation for Gru covering everything we found today.",
+      "instruction": "Now start a new chat inside the same Project. Paste your mission brief where marked, then send. Your Minion has the same facts it had a moment ago — the only thing that changed is the Skill.",
+      "content": "[PASTE YOUR MISSION BRIEF HERE]\n\nBuild a presentation for Gru covering everything above.",
       "note": "It stops and asks five questions instead of building. Answer with just the letters — you can pick several where it says so. Then watch it build something shaped by your answers instead of its own guess."
     }
   ]

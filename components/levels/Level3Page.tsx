@@ -57,6 +57,7 @@ export default function Level3Page() {
   ]
 
   const noSkill   = res['prompt-no-skill']   as { instruction: string; content: string; note: string }
+  const brief     = res['prompt-mission-brief'] as { instruction: string; content: string; note: string }
   const withSkill = res['prompt-with-skill'] as { instruction: string; content: string; note: string }
   const skillFile = res['skill-file']        as { filename: string; description: string }
   const reveal    = briefingData.reveal
@@ -79,8 +80,8 @@ export default function Level3Page() {
             intro={noSkill.instruction}
           />
           <Card done={checked[0]}>
-            <Callout tone="important" label="Do not open a new chat">
-              Everything in this level happens in the Level 02 conversation, so your Minion still has all five answers and your special tool in front of it.
+            <Callout tone="important" label="For this run, stay put">
+              Use the Level 02 conversation, where your Minion still has all five answers and your special tool in front of it.
             </Callout>
             <PromptBlock label="PRESENTATION PROMPT — NO SKILL" promptText={noSkill.content} variant="test" substituteMinion={true} />
             <Callout>{noSkill.note}</Callout>
@@ -115,6 +116,11 @@ export default function Level3Page() {
             </a>
 
             <StepList steps={INSTALL_STEPS} />
+
+            <Callout tone="important" label="A Skill attaches when a chat starts">
+              It cannot join a conversation already in progress, even if you invoke it by name. That is why the next step needs a fresh chat — and why you will carry your findings across first.
+            </Callout>
+
             <MarkDone done={checked[1]} onToggle={() => toggleCheck(1)} />
           </Card>
         </section>
@@ -123,10 +129,29 @@ export default function Level3Page() {
         <section id="after" className="space-y-6">
           <SectionHeader
             eyebrow="// ASK AGAIN"
-            title="Same Chat. Same Words."
-            intro={withSkill.instruction}
+            title="Fresh Chat. Same Words."
+            intro="Two moves. Package up what you found, then hand it to a new chat that has the Skill."
           />
           <Card done={checked[2]}>
+            <div className="space-y-2">
+              <h3 className="text-lg font-bold leading-snug" style={{ fontFamily: 'var(--font-body)', color: 'var(--text-primary)' }}>
+                First, package up your findings
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
+                {brief.instruction}
+              </p>
+            </div>
+            <PromptBlock label="MISSION BRIEF — RUN IN YOUR OLD CHAT" promptText={brief.content} variant="core" substituteMinion={true} />
+            <Callout>{brief.note}</Callout>
+
+            <div className="space-y-2" style={{ paddingTop: 4 }}>
+              <h3 className="text-lg font-bold leading-snug" style={{ fontFamily: 'var(--font-body)', color: 'var(--text-primary)' }}>
+                Then hand it to a fresh chat
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)', fontFamily: 'var(--font-body)' }}>
+                {withSkill.instruction}
+              </p>
+            </div>
             <PromptBlock label="PRESENTATION PROMPT — WITH SKILL" promptText={withSkill.content} variant="final" substituteMinion={true} />
             <Callout tone="important" label="The five questions it will ask">
               <ul className="space-y-1 mt-1">

@@ -21,12 +21,17 @@ through four levels, each teaching one Claude capability they can use at work th
 | 03 | Upgrade Your Minion | Skills | Asks for a deck, installs a Skill, asks for the identical thing again | 15 min |
 | 04 | Give Minion the Wheel | MCPs | Connects Google Calendar, gives one goal instead of steps | 15 min |
 
-**The single most important continuity rule:** Levels 2, 3, and 4 all run in **one
-conversation**. Level 2 has the learner open two chats (meet the Minion, then test the
-memory); the five mission questions happen in the *second* chat, and that chat carries
-through to the end of Level 4. Level 3 and Level 4 both instruct the learner to return to
-it. Any content change must preserve this thread — it is what lets Level 3 say "everything
-we found today" and Level 4 write an invite from almost no input.
+**The single most important continuity rule — the chat chain.** Level 2 has the learner open
+two chats (meet the Minion, then test the memory); the five mission questions and the special
+tool happen in the *second* chat. Level 3 starts there, then **switches to a fresh chat**,
+because a Skill only attaches to a conversation that starts after it is enabled — it cannot
+join one already in progress, even when invoked by name with `/`. To avoid losing the
+findings, Level 3 first asks the Minion for a mission brief in the old chat, which the
+learner pastes into the new one. Level 4 then continues in that new chat.
+
+So the chain is: **L2 chat → (brief handed across) → L3 chat → L4**. Any content change must
+preserve it. This is also what makes Level 3's comparison fair: both runs work from the same
+facts, so the Skill is the only variable.
 
 Level 1 stands alone and needs no Claude Project.
 

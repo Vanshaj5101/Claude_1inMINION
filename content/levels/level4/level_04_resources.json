@@ -5,7 +5,7 @@
       "id": "prompt-check-schedule",
       "type": "prompt",
       "label": "Read My Schedule",
-      "instruction": "Go back to the chat where you built your presentation. Same chat, still. Ask it something it could not possibly have known five minutes ago. Claude will ask permission before it reads anything — approve it.",
+      "instruction": "Go back to the chat where you built your presentation — the fresh one from Level 03. Ask it something it could not possibly have known five minutes ago. Claude will ask permission before it reads anything, so approve it.",
       "content": "What does my schedule look like tomorrow?\nList every event with its title, start time, and how long it runs.",
       "note": "Those are your real meetings, read live from your calendar. Nothing was pasted in."
     },
@@ -13,7 +13,7 @@
       "id": "prompt-find-slot",
       "type": "prompt",
       "label": "Find a Free Slot",
-      "instruction": "Still the same chat. Now ask it something no chatbot could answer without access to your actual data.",
+      "instruction": "Still in that chat. Now ask it something no chatbot could answer without access to your actual data.",
       "content": "Look at my calendar for the next 2 weeks.\nFind the first 3-hour block where I am completely free.\nTell me the date, day, and exact time."
     },
     {
