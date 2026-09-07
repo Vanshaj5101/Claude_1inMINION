@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import { Linkedin, Globe, ChevronDown } from 'lucide-react'
 import { landingContent } from '@/content/landing'
+import { trackEvent } from '@/lib/analytics'
 
 const LEVELS = [1, 2, 3, 4]
 const LEVEL_LABELS = ['Talk to Your Minion', 'Arm Your Minion', 'Upgrade Your Minion', 'Give Minion the Wheel']
@@ -151,7 +152,10 @@ export default function Navigation() {
                   target="_blank"
                   rel="noopener noreferrer"
                   role="menuitem"
-                  onClick={() => setConnectOpen(false)}
+                  onClick={() => {
+                    trackEvent(`click_${link.id}`, { link_url: link.url })
+                    setConnectOpen(false)
+                  }}
                   style={{ textDecoration: 'none', display: 'block' }}
                 >
                   <div

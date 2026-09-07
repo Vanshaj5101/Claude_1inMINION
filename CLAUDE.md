@@ -109,6 +109,22 @@ not go through `PromptBlock`.
   **Context**. Using near-miss words (for example "Project knowledge" instead of "Context")
   sends learners hunting for a screen that does not exist.
 
+## Analytics
+
+GA4 via `@next/third-parties`, wired in `app/layout.tsx` and gated on
+`NEXT_PUBLIC_GA_ID`. With no ID set, nothing renders and nothing is sent — local dev is
+always clean.
+
+**Google Consent Mode v2 runs with everything denied by default.** That inline script must
+stay a plain synchronous `<script>` in `<head>`, because it has to execute before `gtag.js`
+loads. Do not move it to `next/script`. The result is cookieless: visitor counts, referrers,
+and page reports still work, with no cookie banner needed.
+
+Custom events go through `trackEvent()` in `lib/analytics.ts`, which no-ops when analytics
+is absent. Currently `click_linkedin` and `click_portfolio`, fired from the Connect menu.
+Pageviews (including client-side level navigation), outbound clicks, and `.csv` downloads
+are all covered free by GA4 enhanced measurement.
+
 ## Commands
 
 ```bash
