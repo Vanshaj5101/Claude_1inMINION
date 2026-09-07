@@ -8,7 +8,8 @@ through four levels, each teaching one Claude capability they can use at work th
 
 - **Live:** https://1inminion.vercel.app/
 - **Repo:** https://github.com/Vanshaj5101/Claude_1inMINION (public)
-- Deploys automatically from `main` via Vercel. No env vars, no backend, no database.
+- Deploys automatically from `main` via Vercel. No backend, no database. One optional env
+  var, `NEXT_PUBLIC_GA_ID` — see Analytics below.
 - Package name is still `steal-the-sun`; the repo and folder are `Claude_1inMINION`.
 
 ## The four levels
