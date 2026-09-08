@@ -80,7 +80,7 @@ export default function Level3Page() {
             intro={noSkill.instruction}
           />
           <Card done={checked[0]}>
-            <Callout tone="important" label="For this run, stay put">
+            <Callout tone="important" label="Stay on the same chat">
               Use the Level 02 conversation, where your Minion still has all five answers and your special tool in front of it.
             </Callout>
             <PromptBlock label="PRESENTATION PROMPT — NO SKILL" promptText={noSkill.content} variant="test" substituteMinion={true} />
@@ -152,7 +152,7 @@ export default function Level3Page() {
               </p>
             </div>
             <PromptBlock label="PRESENTATION PROMPT — WITH SKILL" promptText={withSkill.content} variant="final" substituteMinion={true} />
-            <Callout label="The five questions it will ask">
+            <Callout label="The brief it will ask you to fill in">
               <ul className="space-y-1 mt-1">
                 {SKILL_QUESTIONS.map(q => (
                   <li key={q} className="flex items-start gap-2">

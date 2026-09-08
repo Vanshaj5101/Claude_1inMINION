@@ -40,8 +40,8 @@
     "with": {
       "label": "WITH THE SKILL",
       "points": [
-        "Asks five multiple-choice questions first",
-        "Waits for your answers before building",
+        "Pops up a short brief and waits",
+        "Shaped by your answers, not its guess",
         "Follows a proven structure and design standard",
         "Hands you a real .pptx file to edit"
       ]

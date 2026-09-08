@@ -45,8 +45,8 @@ export const landingContent = {
     label: "MEET THE HUMAN",
     intro: "// THE ONE BEHIND THE MINIONS",
     links: [
-      { id: "linkedin",  label: "LINKEDIN",  url: "https://www.linkedin.com/in/vanshajgupta/" },
-      { id: "portfolio", label: "PORTFOLIO", url: "https://vanshajgupta.com/" },
+      { id: "linkedin",  label: "LINKEDIN",  tooltip: "LinkedIn",  url: "https://www.linkedin.com/in/vanshajgupta/" },
+      { id: "portfolio", label: "PORTFOLIO", tooltip: "Portfolio", url: "https://vanshajgupta.com/" },
     ],
   },
 

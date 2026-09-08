@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
-import { Linkedin, Globe, ChevronDown } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Linkedin, Globe } from 'lucide-react'
 import { landingContent } from '@/content/landing'
 import { trackEvent } from '@/lib/analytics'
 
@@ -15,18 +15,7 @@ export default function Navigation() {
   const pathname = usePathname()
   const [completedLevels, setCompletedLevels] = useState<number[]>([])
   const [hoveredLevel, setHoveredLevel] = useState<number | null>(null)
-  const [connectOpen, setConnectOpen] = useState(false)
-  const connectRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (connectRef.current && !connectRef.current.contains(e.target as Node)) {
-        setConnectOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null)
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('completedLevels') || '[]') as number[]
@@ -59,131 +48,103 @@ export default function Navigation() {
       </Link>
 
 
-      {/* Right: connect */}
-      <div ref={connectRef} style={{ flexShrink: 0, position: 'relative' }}>
-        <button
-          className="connect-btn"
-          onClick={() => setConnectOpen(o => !o)}
-          aria-haspopup="menu"
-          aria-expanded={connectOpen}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px) scale(1.03)' }}
-          onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0) scale(1)' }}
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: 12,
-            fontWeight: 700,
-            letterSpacing: '0.14em',
-            color: '#1F2937',
-            background: 'var(--yellow)',
-            border: 'none',
-            padding: '6px 14px 6px 6px',
-            borderRadius: 999,
-            whiteSpace: 'nowrap',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 9,
-            transition: 'transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1)',
-            animation: connectOpen ? 'none' : 'connectHalo 2.8s ease-in-out infinite',
-          }}
+      {/* Right: connect — label plus two direct links, no dropdown */}
+      <div className="connect-btn" style={{
+        flexShrink: 0,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        background: 'var(--yellow)',
+        borderRadius: 999,
+        padding: '5px 8px 5px 5px',
+        animation: 'connectHalo 2.8s ease-in-out infinite',
+      }}>
+        <span style={{
+          width: 28, height: 28, borderRadius: '50%', overflow: 'hidden', flexShrink: 0,
+          background: 'rgba(255,255,255,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <Image
+            src="/minion_img.png"
+            alt=""
+            width={28}
+            height={28}
+            className="connect-avatar"
+            style={{ objectFit: 'contain', animation: 'connectNudge 5s ease-in-out infinite' }}
+          />
+        </span>
+
+        <span
+          className="hidden sm:inline"
+          style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, letterSpacing: '0.14em', color: '#1F2937', whiteSpace: 'nowrap' }}
         >
-          <span
-            style={{
-              width: 28, height: 28, borderRadius: '50%', overflow: 'hidden', flexShrink: 0,
-              background: 'rgba(255,255,255,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-            }}
-          >
-            <Image
-              src="/minion_img.png"
-              alt=""
-              width={28}
-              height={28}
-              className="connect-avatar"
-              style={{
-                objectFit: 'contain',
-                animation: connectOpen ? 'none' : 'connectNudge 5s ease-in-out infinite',
-              }}
-            />
-          </span>
-          <span className="hidden sm:inline">{connect.label}</span>
-          <span className="sm:hidden">HUMAN</span>
-          <ChevronDown size={13} style={{ flexShrink: 0, transform: connectOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.18s ease' }} />
-        </button>
+          {connect.label}
+        </span>
 
-        {connectOpen && (
-          <div
-            role="menu"
-            style={{
-              position: 'absolute',
-              top: 'calc(100% + 10px)',
-              right: 0,
-              minWidth: 220,
-              background: isHomePage ? 'rgba(8,12,24,0.97)' : 'var(--bg-primary)',
-              border: isHomePage ? '1px solid rgba(242,155,28,0.3)' : '1px solid var(--border)',
-              borderTop: '2px solid var(--yellow)',
-              borderRadius: 10,
-              boxShadow: isHomePage
-                ? '0 12px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(242,155,28,0.1)'
-                : '0 8px 32px rgba(0,0,0,0.14)',
-              overflow: 'hidden',
-              zIndex: 100,
-              backdropFilter: isHomePage ? 'blur(16px)' : 'none',
-            }}
-          >
-            <div style={{
-              padding: '8px 16px 6px',
-              fontFamily: 'var(--font-mono)',
-              fontSize: 9,
-              fontWeight: 700,
-              letterSpacing: '0.2em',
-              color: 'var(--yellow)',
-              borderBottom: isHomePage ? '1px solid rgba(242,155,28,0.15)' : '1px solid var(--border)',
-            }}>
-              {connect.intro}
-            </div>
+        <span style={{ width: 1, height: 20, background: 'rgba(0,0,0,0.18)', flexShrink: 0 }} />
 
-            {connect.links.map((link, i) => {
-              const Icon = link.id === 'linkedin' ? Linkedin : Globe
-              const isLast = i === connect.links.length - 1
-              return (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          {connect.links.map(link => {
+            const Icon = link.id === 'linkedin' ? Linkedin : Globe
+            const isHovered = hoveredLink === link.id
+            return (
+              <div key={link.id} style={{ position: 'relative' }}>
                 <a
-                  key={link.id}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  role="menuitem"
-                  onClick={() => {
-                    trackEvent(`click_${link.id}`, { link_url: link.url })
-                    setConnectOpen(false)
+                  aria-label={link.tooltip}
+                  onClick={() => trackEvent(`click_${link.id}`, { link_url: link.url })}
+                  onMouseEnter={() => setHoveredLink(link.id)}
+                  onMouseLeave={() => setHoveredLink(null)}
+                  onFocus={() => setHoveredLink(link.id)}
+                  onBlur={() => setHoveredLink(null)}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#1F2937',
+                    background: isHovered ? 'rgba(0,0,0,0.14)' : 'transparent',
+                    transition: 'background 0.15s ease, transform 0.15s ease',
+                    transform: isHovered ? 'scale(1.08)' : 'scale(1)',
+                    textDecoration: 'none',
                   }}
-                  style={{ textDecoration: 'none', display: 'block' }}
                 >
-                  <div
-                    style={{
-                      padding: '13px 16px',
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: 12,
-                      fontWeight: 700,
-                      letterSpacing: '0.12em',
-                      color: isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)',
-                      borderBottom: isLast ? 'none' : (isHomePage ? '1px solid rgba(255,255,255,0.06)' : '1px solid var(--border)'),
-                      cursor: 'pointer',
-                      transition: 'background 0.15s ease, color 0.15s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 10,
-                    }}
-                    onMouseEnter={e => { e.currentTarget.style.background = isHomePage ? 'rgba(242,155,28,0.1)' : 'rgba(242,155,28,0.06)'; e.currentTarget.style.color = 'var(--yellow)' }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = isHomePage ? 'rgba(255,255,255,0.9)' : 'var(--text-primary)' }}
-                  >
-                    <Icon size={14} style={{ flexShrink: 0 }} />
-                    {link.label}
-                  </div>
+                  <Icon size={16} strokeWidth={2.2} />
                 </a>
-              )
-            })}
-          </div>
-        )}
+
+                {isHovered && (
+                  <span
+                    role="tooltip"
+                    style={{
+                      position: 'absolute',
+                      top: 'calc(100% + 9px)',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      background: '#1F2937',
+                      color: '#fff',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 10,
+                      fontWeight: 700,
+                      letterSpacing: '0.1em',
+                      textTransform: 'uppercase',
+                      padding: '5px 9px',
+                      borderRadius: 6,
+                      whiteSpace: 'nowrap',
+                      pointerEvents: 'none',
+                      boxShadow: '0 4px 14px rgba(0,0,0,0.22)',
+                      zIndex: 120,
+                    }}
+                  >
+                    {link.tooltip}
+                  </span>
+                )}
+              </div>
+            )
+          })}
+        </div>
       </div>
 
       {/* Center: level progress track — level pages only */}

@@ -1,6 +1,6 @@
 ---
 name: Presentation Builder
-description: Builds beautifully designed, data-backed presentations and delivers them as a PowerPoint file. Asks clarifying questions before building anything, then follows a proven slide structure and a strict visual design standard every time.
+description: Builds beautifully designed, data-backed presentations and delivers them as a PowerPoint file. Asks a short interactive brief before building anything, then follows a proven slide structure and a strict visual design standard every time.
 ---
 
 # Skill: Presentation Builder
@@ -10,63 +10,69 @@ Use this skill whenever asked to create a presentation,
 pitch deck, or slide deck for any topic or purpose.
 
 ## Step 1 — Ask these questions first
-Before building anything, ask all five questions in one friendly message.
+Before building anything, gather a short brief from the user.
 
-Make them easy to answer. Every question that has options must be
-presented as a lettered list so the user can reply with just letters
-instead of writing sentences. Say clearly which questions accept more
-than one answer. Tell them they can add their own option in words at any
-point, and that "skip" is a valid answer.
+**Ask using your interactive question tool — the one that renders
+selectable options the user can click.** Do not write the questions out
+as a numbered list in your reply and do not ask them to type letters
+back. If you find yourself typing "A." or "1." into a message, you are
+doing this wrong.
 
-Never ask these one at a time across several messages. One message, all
-five, then wait.
+Ask all of them in one round, not one question per message.
 
----
+Mark questions 1 and 2 as multi-select. A deck usually has more than one
+audience and more than one goal, and the user must be able to choose
+several. Questions 3 and 4 are single-select. Allow a free-text answer
+on every question so nobody is boxed in by the options, and treat
+skipping as a valid answer.
 
-Before I build anything — five quick questions. Reply with the letters,
-like `1: A, C   2: B   3: D   4: none   5: skip`
+If the interactive tool is genuinely unavailable to you, fall back to
+asking in plain prose — but keep it to one short message and never
+present a lettered menu.
 
-**1. Who is this for?** *(pick as many as apply)*
-  A. Your manager or leadership
-  B. Your immediate team
-  C. A client or customer
-  D. A cross-functional group who do not know your work
-  E. An external or public audience
+### The questions and their options
 
-**2. What do you want them to do afterwards?** *(pick as many as apply)*
-  A. Approve something or say yes to a decision
-  B. Fund it or allocate resource
-  C. Change how they are doing something today
-  D. Just understand it — no action needed
-  E. Feel confident that this is under control
+**1. Who is this for?** *(multi-select)*
+  - Your manager or leadership
+  - Your immediate team
+  - A client or customer
+  - A cross-functional group who do not know your work
+  - An external or public audience
 
-**3. What should it feel like?** *(pick one, or two to blend)*
-  A. Bold and dramatic
-  B. Clean and professional
-  C. Warm and human
-  D. Fun and energetic
+**2. What do you want them to do afterwards?** *(multi-select)*
+  - Approve something or say yes to a decision
+  - Fund it or allocate resource
+  - Change how they are doing something today
+  - Just understand it, no action needed
+  - Feel confident this is under control
 
-**4. Any colour or visual direction?** *(pick one, or describe your own)*
-  A. Use our brand colours — I will paste them
-  B. Dark and high contrast
-  C. Light and minimal
-  D. You choose — surprise me
+**3. What should it feel like?** *(single-select)*
+  - Bold and dramatic
+  - Clean and professional
+  - Warm and human
+  - Fun and energetic
+
+**4. Any colour or visual direction?** *(single-select)*
+  - Use our brand colours, I will paste them
+  - Dark and high contrast
+  - Light and minimal
+  - You choose
 
 **5. Anything it must include that I would not know?**
-  Deadlines, names, a number that has to appear, something to avoid
-  saying. Free text, or "nothing".
+  Free text. Deadlines, names, a number that has to appear, something to
+  avoid saying. "Nothing" is fine.
 
----
+### After they answer
 
-Wait for their reply before building anything.
+Wait for their response before building anything.
 
 If they answer only some, use what you have and pick sensible defaults
-for the rest — do not ask again.
+for the rest. Do not ask a second round.
 
 **When question 1 has more than one answer**, you are presenting to a
 mixed room. Write for the most senior audience selected, but assume no
 shared context: expand internal shorthand the first time it appears, and
-put the decision the senior audience cares about earlier in the deck.
+move the decision the senior audience cares about earlier in the deck.
 Say in one line who the deck is aimed at when you hand it over.
 
 ## Step 2 — Build using this structure
@@ -160,6 +166,8 @@ Give them the file. Do not paste the deck into the chat.
 
 ## What this skill never does
 - Start building before asking the questions
+- Write the questions out as a lettered or numbered menu instead of
+  using the interactive question tool
 - Output HTML, a web page, markdown, or a canvas document —
   the deliverable is a .pptx file and nothing else
 - Deliver the slides as text in the chat instead of a file

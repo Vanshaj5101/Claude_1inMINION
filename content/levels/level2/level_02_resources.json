@@ -45,7 +45,7 @@
       "id": "mission-questions",
       "type": "mission",
       "label": "The 5 Mission Questions",
-      "instruction": "Stay in that second chat — the one you just used to test the memory. Ask these five questions there, one at a time. Keep this conversation open: everything from here to the end of Level 04 happens inside it.",
+      "instruction": "Stay in that second chat — the one you just used to test the memory. Ask all five questions there, one at a time, in the same chat. Keep this conversation open: everything from here to the end of Level 04 happens inside it.",
       "questions": [
         {
           "number": "01",
