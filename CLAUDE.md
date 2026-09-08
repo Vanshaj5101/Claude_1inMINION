@@ -162,10 +162,11 @@ a slide-deck route, all organisation-specific. Recover from `a8ae559` if ever wa
 
 ## Known open items
 
-- Nothing in the four levels has been executed against real Claude end to end.
-- Level 3 assumes a newly installed Skill auto-triggers mid-conversation. Unverified, and
-  there is no fallback in the UI.
+- Levels 1-3 have been run against real Claude; Level 4's connector flow has not.
+- Level 3's Skill does NOT reliably auto-trigger, confirmed in testing. It cannot attach to
+  a chat that started before it was enabled (not even via `/`), and even in a fresh chat it
+  sometimes fails to fire on its own. The prompt therefore ends with `/presentation-builder`
+  and the page tells learners to pick it from the `/` menu so it attaches as a chip.
 - Level 4 depends on the Google Calendar connector, which may be unavailable on some plans
   or blocked by workspace policy. No alternative path exists.
-- No analytics installed yet.
 - Minions artwork belongs to Universal / Illumination; replace before commercial use.

@@ -27,8 +27,8 @@
       "id": "prompt-with-skill",
       "type": "prompt",
       "label": "Presentation Prompt — With the Skill",
-      "instruction": "Now start a new chat inside the same Project. Paste your mission brief where marked, then send. Your Minion has the same facts it had a moment ago — the only thing that changed is the Skill.",
-      "content": "[PASTE YOUR MISSION BRIEF HERE]\n\nBuild a presentation for Gru covering everything above.",
+      "instruction": "Start a new chat inside the same Project. Paste your mission brief where marked. Then type / at the end and pick presentation-builder from the list, so the Skill attaches as a chip before you send.",
+      "content": "[PASTE YOUR MISSION BRIEF HERE]\n\nBuild a presentation for Gru covering everything above.\n\n/presentation-builder",
       "note": "It stops and asks before it builds. Claude pops up a short set of questions you answer by clicking — pick several where it lets you. Then watch it build something shaped by your answers instead of its own guess."
     }
   ]

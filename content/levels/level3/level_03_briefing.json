@@ -5,12 +5,12 @@
     "eyebrow": "// LEVEL 03 — SKILLS",
     "concept": "Skills",
     "duration": "15 min",
-    "subdescription": "Your Minion has a base, knows the data, and has answered every mission question. Now ask it for a presentation and you get whatever it feels like making that day.\nAsk once, install a Skill, carry your findings into a fresh chat, and ask for the exact same thing again."
+    "subdescription": "Your Minion has a base, knows the data, and has answered every mission question. Now ask it for a presentation and you get whatever it feels like making that day.\nAsk once, install a Skill, carry your findings into a fresh chat, and make the same ask again."
   },
   "mission_targets": [
     "Ask for a presentation with no Skill loaded and keep the result",
     "Install a Skill that trains your Minion to build decks a proven way",
-    "Carry your findings into a fresh chat and ask for exactly the same thing",
+    "Carry your findings into a fresh chat and make the same ask with the Skill on",
     "Understand why a Skill beats a longer prompt for anything you do repeatedly"
   ],
   "mission_gear": [
@@ -52,7 +52,7 @@
   "mission_check": [
     "Asked for a presentation with no Skill and kept the result",
     "Downloaded the Skill file and installed it in Claude",
-    "Carried my findings into a new chat and asked for the same thing",
+    "Carried my findings into a new chat and asked again with the Skill attached",
     "Compared both and can name three concrete differences"
   ]
 }

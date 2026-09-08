@@ -129,7 +129,7 @@ export default function Level3Page() {
         <section id="after" className="space-y-6">
           <SectionHeader
             eyebrow="// ASK AGAIN"
-            title="Fresh Chat. Same Words."
+            title="Fresh Chat. Same Ask."
             intro="Two moves. Package up what you found, then hand it to a new chat that has the Skill."
           />
           <Card done={checked[2]}>
@@ -152,6 +152,9 @@ export default function Level3Page() {
               </p>
             </div>
             <PromptBlock label="PRESENTATION PROMPT — WITH SKILL" promptText={withSkill.content} variant="final" substituteMinion={true} />
+            <Callout tone="important" label="Call the Skill by name">
+              Claude does not always pick a new Skill up on its own. After pasting, type <strong style={{ color: 'var(--text-primary)' }}>/</strong> and choose <strong style={{ color: 'var(--text-primary)' }}>presentation-builder</strong> so it attaches as a chip. If it just writes a deck straight away with no questions, the Skill did not attach — start another chat and invoke it before sending.
+            </Callout>
             <Callout label="The brief it will ask you to fill in">
               <ul className="space-y-1 mt-1">
                 {SKILL_QUESTIONS.map(q => (

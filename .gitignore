@@ -4,3 +4,7 @@ node_modules/
 .env.local
 .env*.local
 *.tsbuildinfo
+
+# LinkedIn carousel working files — the seeded canvas is a 2.5MB
+# tool payload, and the canonical version lives in the Artifact.
+.carousel/
